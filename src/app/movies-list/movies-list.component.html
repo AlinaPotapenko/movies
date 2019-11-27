@@ -1,2 +1,13 @@
 <h1>List</h1>
+
+
+<form [formGroup] = "searchControl" (submit)="submitting()">
+    <input formControlName = "s" [class] = "input">
+    <!-- <input formControlName = "y"> -->
+    <button type="submit">Search</button>
+</form>
+<ul *ngIf="movies.length">
+    <li *ngFor="let movie of movies">{{movie.Title}}</li>
+</ul>
 <a routerLink="details" routerLinkActive="active">Details</a>
+

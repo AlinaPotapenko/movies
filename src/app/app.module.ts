@@ -24,7 +24,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot(APP_ROUTING);
   ],
   imports: [
     BrowserModule,
-    rootRouting
+    rootRouting,
   ],
   providers: [],
   bootstrap: [AppComponent]

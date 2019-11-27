@@ -1,6 +1,9 @@
 import { MoviesListComponent } from './movies-list.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MovieDetailsComponent } from './movie-details/movie-details.component';
+import { SharedModule } from '../Shared/shared.module';
 
 const ROUTES: Routes = [
   {
@@ -9,17 +12,27 @@ const ROUTES: Routes = [
   },
   {
     path: 'details',
-    loadChildren: () => import('./movie-details/movie-details.module').then(m => m.MovieDetailsModule)
+    component: MovieDetailsComponent
   }
 ];
 
 
 @NgModule({
   declarations: [
-    MoviesListComponent
+    MoviesListComponent,
+    MovieDetailsComponent
   ],
   imports: [
-    RouterModule.forChild(ROUTES)
-  ]
+    SharedModule,
+    RouterModule.forChild(ROUTES),
+    FormsModule,
+    ReactiveFormsModule
+  ],
+  // providers: [HttpClient],
+  exports: []
 })
-export class MoviesListModule { }
+export class MoviesListModule { 
+
+   
+
+}

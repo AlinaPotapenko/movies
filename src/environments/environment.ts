@@ -3,8 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  API_URL: 'http://www.omdbapi.com/?apikey=15cd9fc8',
+  API_CONFIG  : {
+    /* Global search */
+    globalSearch: ''
+  }
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

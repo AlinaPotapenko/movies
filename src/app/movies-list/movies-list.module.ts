@@ -11,7 +11,7 @@ const ROUTES: Routes = [
     component: MoviesListComponent
   },
   {
-    path: 'details',
+    path: 'details/:imdbID',
     component: MovieDetailsComponent
   }
 ];
@@ -28,7 +28,6 @@ const ROUTES: Routes = [
     FormsModule,
     ReactiveFormsModule
   ],
-  // providers: [HttpClient],
   exports: []
 })
 export class MoviesListModule { 

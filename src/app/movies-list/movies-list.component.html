@@ -1,13 +1,21 @@
-<h1>List</h1>
+<h1 [class] = "myclass2">MovieLand</h1>
 
 
-<form [formGroup] = "searchControl" (submit)="submitting()">
-    <input formControlName = "s" [class] = "input">
+<form [formGroup] = "searchControl" (submit)="submitting()" [class] = "myclass">
+    <input formControlName = "s" [class] = "myclass3">
     <!-- <input formControlName = "y"> -->
     <button type="submit">Search</button>
 </form>
 <ul *ngIf="movies.length">
-    <li *ngFor="let movie of movies">{{movie.Title}}</li>
+        <li *ngFor="let movie of movies" [class] = "myclass6" (click) = "navigateToDetails(movie)">
+            <!-- <a routerLink="details/{{movie.imdbID}}" routerLinkActive="active"> -->
+            <div>
+            <p [class] = "myclass7">{{movie.Title}}<br>
+            {{movie.Type}}<br>
+            {{movie.Year}}</p>
+            <img [class] = "myclass5" src="{{movie.Poster}}"/>
+            </div>
+        <!-- </a> -->
+    </li>
 </ul>
-<a routerLink="details" routerLinkActive="active">Details</a>
 

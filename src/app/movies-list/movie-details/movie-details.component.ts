@@ -9,16 +9,17 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class MovieDetailsComponent implements OnInit{
   public imdbId: string;
-  public movie: any[] = [];;
-  public title: any;
+  public movie: any[] = [];
+  public movieTitle = "title";
+  public description = "container";
+  public items = "items";
   
 
   constructor(private _route: ActivatedRoute, private _httpService: HttpService,
     private _router: Router) {
    
     };
-          
-    
+
     ngOnInit() {
       this._route.params.subscribe(params => this.imdbId = params.imdbID)
       console.log(this.imdbId);
@@ -26,18 +27,15 @@ export class MovieDetailsComponent implements OnInit{
         i: this.imdbId
       };
       console.log(params);
+
       this._httpService.get(params)
         .subscribe(data => {
           if (data) {
             this.movie = data;
           }
           console.log(this.movie);
-          
         });  
       }
-      
-      
-      
     
     
   }

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API_URL: 'http://www.omdbapi.com/?apikey=15cd9fc8',
+  API_URL: 'http://www.omdbapi.com/?apikey=15cd9fc8&plot=full',
   API_CONFIG  : {
     /* Global search */
     globalSearch: ''

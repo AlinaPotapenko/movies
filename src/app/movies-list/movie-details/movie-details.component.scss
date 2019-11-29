@@ -1,1 +1,17 @@
-
+.title {
+	text-align: center;
+	font-family: Constantia;
+}
+.container {
+	display: flex;
+	flex-direction: row;
+	margin-left: 2%;
+}
+img {
+	margin-right: 20px;
+}
+.items {
+	justify-content: flex-start;
+	flex-direction: column;
+	font-family: Constantia;
+}

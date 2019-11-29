@@ -1,3 +1,20 @@
-<h1>Details</h1>
-blabla
+<h1 [class] = "movieTitle">{{movie.Title}}</h1>
+<div [class] = "description">
+	<img src="{{movie.Poster}}">
+	<section [class] = "items">
+	
+		<p>Year: {{movie.Year}}</p>
+	    <p>Type: {{movie.Type}}</p>
+		<p>Runtime: {{movie.Runtime}}</p>
+		<p >Country: {{movie.Country}}</p>
+		<p >Genre: {{movie.Genre}}</p>
+		<p >Production: {{movie.Production}}</p>
+		<p >Director: {{movie.Director}}</p>
+		<p >Language: {{movie.Language}}</p>
+		<p >Actors: {{movie.Actors}}</p>
+		<p >Awards: {{movie.Awards}}</p>
+		<p >{{movie.Plot}}</p>
+		<p>ImdbRating: {{movie.imdbRating}} ★</p>
+	</section>
+</div>
 <a routerLink="/" routerLinkActive="active">Go to main</a>

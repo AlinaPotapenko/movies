@@ -8,14 +8,18 @@
 </form>
 <ul *ngIf="movies.length">
         <li *ngFor="let movie of movies" [class] = "myclass6" (click) = "navigateToDetails(movie)">
-            <!-- <a routerLink="details/{{movie.imdbID}}" routerLinkActive="active"> -->
+            
             <div>
-            <p [class] = "myclass7">{{movie.Title}}<br>
+            <p class = "resultDetails">{{movie.Title}}<br>
             {{movie.Type}}<br>
             {{movie.Year}}</p>
-            <img [class] = "myclass5" src="{{movie.Poster}}"/>
+            <img *ngIf ='movie.Poster != "N/A"; else noPoster' src="{{movie.Poster}}" class = "poster" />
+            <ng-template #noPoster>
+                <img class="poster" src='assets/images/no-image.png' />
+            </ng-template>
             </div>
-        <!-- </a> -->
+       
     </li>
 </ul>
+
 

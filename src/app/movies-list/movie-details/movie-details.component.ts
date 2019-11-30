@@ -10,9 +10,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class MovieDetailsComponent implements OnInit{
   public imdbId: string;
   public movie: any[] = [];
-  public movieTitle = "title";
-  public description = "container";
-  public items = "items";
   
 
   constructor(private _route: ActivatedRoute, private _httpService: HttpService,
@@ -21,6 +18,7 @@ export class MovieDetailsComponent implements OnInit{
     };
 
     ngOnInit() {
+      document.body.className = "background";
       this._route.params.subscribe(params => this.imdbId = params.imdbID)
       console.log(this.imdbId);
       let params = {
@@ -35,6 +33,7 @@ export class MovieDetailsComponent implements OnInit{
           }
           console.log(this.movie);
         });  
+
       }
     
     

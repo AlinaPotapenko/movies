@@ -14,14 +14,6 @@ import { Router } from '@angular/router';
 export class MoviesListComponent implements OnInit{
   searchControl: FormGroup;
   movies: any[] = [];
-  public myclass = "searchField";
-  public myclass2 = "heading";
-  public myclass3 = "inputField";
-  public myclass4 = "detailsLink";
-  public myclass5 = "poster";
-  public myclass6 = "searchResults";
-  public myclass7 = "resultDetails";
-  public imageURL: string;
 
   
   constructor(private _httpService: HttpService, private _router: Router) {
@@ -65,15 +57,7 @@ navigateToDetails(movie) {
   this._router.navigate([`movies/details/${movie.imdbID}`]).then();
 }
 
-loadImage(poster) {
-  if (poster) {
-  if (poster != "N/A") {
-    this.imageURL = poster;
-  } 
-  this.imageURL = "";
-}
-return true;
-} 
+
 }
 
 

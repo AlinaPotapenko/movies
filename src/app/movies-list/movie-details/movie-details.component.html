@@ -1,20 +1,23 @@
-<h1 [class] = "movieTitle">{{movie.Title}}</h1>
-<div [class] = "description">
-	<img src="{{movie.Poster}}">
-	<section [class] = "items">
+<h1 class = "heading">{{movie.Title}}</h1>
+<div class = "container">
+	<img *ngIf ='movie.Poster != "N/A"; else noPoster'src="{{movie.Poster}}"> 
+	<ng-template #noPoster>
+                <img class="noImg" src='../../assets/images/no-image.png'/>
+    </ng-template>
+	<section class = "items">
 	
-		<p>Year: {{movie.Year}}</p>
-	    <p>Type: {{movie.Type}}</p>
-		<p>Runtime: {{movie.Runtime}}</p>
-		<p >Country: {{movie.Country}}</p>
-		<p >Genre: {{movie.Genre}}</p>
-		<p >Production: {{movie.Production}}</p>
-		<p >Director: {{movie.Director}}</p>
-		<p >Language: {{movie.Language}}</p>
-		<p >Actors: {{movie.Actors}}</p>
-		<p >Awards: {{movie.Awards}}</p>
-		<p >{{movie.Plot}}</p>
-		<p>ImdbRating: {{movie.imdbRating}} ★</p>
+		<p class ="item" *ngIf ='movie.Year != "N/A" && movie.Year'><span>Year: </span>{{movie.Year}}</p>
+	    <p *ngIf ='movie.Type != "N/A" && movie.Type' class ="item"><span>Type: </span> {{movie.Type}}</p>
+		<p *ngIf ='movie.Runtime != "N/A" && movie.Runtime' class ="item"><span>Runtime: </span> {{movie.Runtime}}</p>
+		<p *ngIf ='movie.Country != "N/A" && movie.Country' class ="item"><span>Country: </span> {{movie.Country}}</p>
+		<p *ngIf ='movie.Genre != "N/A" && movie.Genre' class ="item"><span>Genre: </span> {{movie.Genre}}</p>
+		<p *ngIf ='movie.Production != "N/A" && movie.Production' class ="item"><span>Production: </span> {{movie.Production}}</p>
+		<p *ngIf ='movie.Director != "N/A" && movie.Director' class ="item"><span>Director: </span> {{movie.Director}}</p>
+		<p *ngIf ='movie.Language != "N/A" && movie.Language' class ="item"><span>Language: </span> {{movie.Language}}</p>
+		<p *ngIf ='movie.Actors != "N/A" && movie.Actors' class ="item"><span>Actors: </span> {{movie.Actors}}</p>
+		<p *ngIf ='movie.Awards != "N/A" && movie.Awards'class ="item"><span>Awards: </span> {{movie.Awards}}</p>
+		<p *ngIf ='movie.Plot != "N/A" && movie.Plot' class ="item">{{movie.Plot}}</p>
+		<p *ngIf ='movie.imdbRating != "N/A" && movie.imdbRating' class ="item"><span>ImdbRating: </span> {{movie.imdbRating}} ★</p>
 	</section>
 </div>
 <a routerLink="/" routerLinkActive="active">Go to main</a>

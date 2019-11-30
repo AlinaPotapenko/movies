@@ -1,18 +1,18 @@
-<h1 [class] = "myclass2">MovieLand</h1>
+<h1 class = "heading">MovieLand</h1>
 
 
-<form [formGroup] = "searchControl" (submit)="submitting()" [class] = "myclass">
-    <input formControlName = "s" [class] = "myclass3">
+<form [formGroup] = "searchControl" (submit)="submitting()" class = "searchField">
+    <input formControlName = "s" placeholder="  type a movie title here" class = "inputField">
     <!-- <input formControlName = "y"> -->
     <button type="submit">Search</button>
 </form>
-<ul *ngIf="movies.length">
-        <li *ngFor="let movie of movies" [class] = "myclass6" (click) = "navigateToDetails(movie)">
+<ul *ngIf="movies.length" class="moviesList">
+        <li *ngFor="let movie of movies" class = "container" (click) = "navigateToDetails(movie)">
             
             <div>
-            <p class = "resultDetails">{{movie.Title}}<br>
-            {{movie.Type}}<br>
-            {{movie.Year}}</p>
+            <p class = "resultDetails"><span>{{movie.Title}}</span><br>
+            <span>{{movie.Type}}</span><br>
+            <span>{{movie.Year}}</span></p>
             <img *ngIf ='movie.Poster != "N/A"; else noPoster' src="{{movie.Poster}}" class = "poster" />
             <ng-template #noPoster>
                 <img class="poster" src='assets/images/no-image.png' />
@@ -21,5 +21,6 @@
        
     </li>
 </ul>
+
 
 

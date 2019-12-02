@@ -4,6 +4,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { SharedModule } from '../Shared/shared.module';
+import { MatPaginatorModule} from '@angular/material/paginator';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+
 
 const ROUTES: Routes = [
   {
@@ -26,9 +30,16 @@ const ROUTES: Routes = [
     SharedModule,
     RouterModule.forChild(ROUTES),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
-  exports: []
+  exports: [
+  MatPaginatorModule,
+  MatFormFieldModule,
+  MatSelectModule
+  ]
 })
 export class MoviesListModule { 
 

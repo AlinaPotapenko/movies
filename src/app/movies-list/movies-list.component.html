@@ -3,9 +3,21 @@
 
 <form [formGroup] = "searchControl" (submit)="submitting()" class = "searchField">
     <input formControlName = "s" placeholder="  type a movie title here" class = "inputField">
-    <!-- <input formControlName = "y"> -->
     <button type="submit">Search</button>
+
+   <!--  <div class = "advancedOptions">
+    <mat-form-field formControlName = "type">
+    <mat-label>Type:</mat-label>
+    <mat-select>
+    <mat-option *ngFor="let type of types" [value]="type.value">
+      {{type.viewValue}}
+    </mat-option>
+    </mat-select>
+    </mat-form-field>
+    </div> -->
+
 </form>
+
 <ul *ngIf="movies.length" class="moviesList">
         <li *ngFor="let movie of movies" class = "container" (click) = "navigateToDetails(movie)">
             
@@ -20,7 +32,13 @@
             </div>
        
     </li>
+    <mat-paginator [length]=totalResults 
+              [pageSize]=movies.length
+              [hidePageSize]=true
+              (page)="doPaginate($event)">
+    </mat-paginator>
 </ul>
+
 
 
 

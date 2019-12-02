@@ -3,6 +3,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { RouterModule, Routes } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const APP_ROUTING: Routes = [
   {
@@ -25,6 +26,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot(APP_ROUTING);
   imports: [
     BrowserModule,
     rootRouting,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

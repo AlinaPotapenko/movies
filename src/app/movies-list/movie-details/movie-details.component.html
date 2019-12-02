@@ -6,7 +6,7 @@
     </ng-template>
 	<section class = "items">
 	
-		<p class ="item" *ngIf ='movie.Year != "N/A" && movie.Year'><span>Year: </span>{{movie.Year}}</p>
+		<p *ngIf ='movie.Year != "N/A" && movie.Year' class ="item"><span>Year: </span>{{movie.Year}}</p>
 	    <p *ngIf ='movie.Type != "N/A" && movie.Type' class ="item"><span>Type: </span> {{movie.Type}}</p>
 		<p *ngIf ='movie.Runtime != "N/A" && movie.Runtime' class ="item"><span>Runtime: </span> {{movie.Runtime}}</p>
 		<p *ngIf ='movie.Country != "N/A" && movie.Country' class ="item"><span>Country: </span> {{movie.Country}}</p>

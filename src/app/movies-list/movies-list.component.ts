@@ -6,7 +6,12 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {PageEvent} from '@angular/material/paginator';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
+// import {MatDialogModule, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
+// export interface DialogData {
+//   animal: string;
+//   name: string;
+// }
 
 // export interface Type {
 //   value: string;
@@ -28,16 +33,13 @@ export class MoviesListComponent implements OnInit{
   totalResults: number;
   pageEvent: PageEvent;
 
-  // types: Type[] = [
-  //   {value: 'movie-0', viewValue: 'Movie'},
-  //   {value: 'series-1', viewValue: 'Series'},
-  //   {value: 'episode-2', viewValue: 'Episode'}
-  // ];
-
+  // animal: string;
+  // name: string;
   
   constructor(private _httpService: HttpService, private _router: Router) {
     this.searchControl = new FormGroup({
       s: new FormControl(),
+      type: new FormControl(),
       y: new FormControl()
     });
   }
@@ -75,16 +77,45 @@ export class MoviesListComponent implements OnInit{
       });
   }
 
+  // openDialog(): void {
+  //   const dialogRef = this.dialog.open(AdvancedSearchOptions, {
+  //     width: '250px',
+  //     data: {name: this.name, animal: this.animal}
+  //   });
+
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     console.log('The dialog was closed');
+  //     this.animal = result;
+  //   });
+  // }
+
   public doPaginate(e?:PageEvent) {
     this.submitting(e.pageIndex + 1);
   }
-navigateToDetails(movie) {
+
+  navigateToDetails(movie) {
   this._router.navigate([`movies/details/${movie.imdbID}`]).then();
-}
+  }
 
 
 }
+
+
 
 
   
+// @Component({
+//   selector: 'advanced-search-options',
+//   templateUrl: 'advanced-search-options.html',
+// })
+// export class AdvancedSearchOptions {
 
+//   // constructor(
+//   //   public dialogRef: MatDialogRef<AdvancedSearchOptions>,
+//   //   @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+
+//   // onNoClick(): void {
+//   //   this.dialogRef.close();
+//   // }
+
+// }

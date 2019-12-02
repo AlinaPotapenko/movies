@@ -3,10 +3,11 @@
 
 <form [formGroup] = "searchControl" (submit)="submitting()" class = "searchField">
     <input formControlName = "s" placeholder="  type a movie title here" class = "inputField">
-    <button type="submit">Search</button>
-
-   <!--  <div class = "advancedOptions">
-    <mat-form-field formControlName = "type">
+    <button class = "button" type="submit">Search</button>
+    <button class = "button" >...Advanced</button>
+    
+    <!-- <div>
+    <mat-form-field formControlName = "type" class = "advancedOptions">
     <mat-label>Type:</mat-label>
     <mat-select>
     <mat-option *ngFor="let type of types" [value]="type.value">
@@ -14,6 +15,7 @@
     </mat-option>
     </mat-select>
     </mat-form-field>
+
     </div> -->
 
 </form>

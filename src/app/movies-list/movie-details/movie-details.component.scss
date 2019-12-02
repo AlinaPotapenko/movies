@@ -16,6 +16,13 @@ span {
 p {
 	border-bottom: 1px solid white;
 }
+.button {
+    background: #e3e5e6;
+    color: #547c8a;
+    border: 1px solid #547c8a;
+    border-radius: 3px;
+    height: 23px;
+}
 .container {
 	display: flex;
 	flex-direction: row;

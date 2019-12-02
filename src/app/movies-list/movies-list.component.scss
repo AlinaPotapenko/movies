@@ -15,21 +15,20 @@ mat-paginator {
     border: 2px solid #547c8a;
     color: #547c8a;
 }
-/*.advancedOptions {
+.advancedOptions {
     box-sizing: border-box;
     background: white;
-    width: 63%;
-    text-align: center;
     margin-right: auto;
     margin-left: auto;
     margin-top: 32px;
-    height: 53px;
+    height: 45px;
     border-radius: 7px;
     border: 2px solid #547c8a;
     color: #547c8a;
     width: 220px;
+    margin-right: 10px;
 
-}*/
+}
 .moviesList {
     padding: 0px;
 }
@@ -44,7 +43,7 @@ mat-paginator {
     width: 57%;
     font-family: Constantia;
 }
-button {
+.button {
     background: #e3e5e6;
     color: #547c8a;
     border: 1px solid #547c8a;

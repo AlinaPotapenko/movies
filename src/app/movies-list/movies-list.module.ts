@@ -7,6 +7,7 @@ import { SharedModule } from '../Shared/shared.module';
 import { MatPaginatorModule} from '@angular/material/paginator';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 const ROUTES: Routes = [
@@ -24,7 +25,8 @@ const ROUTES: Routes = [
 @NgModule({
   declarations: [
     MoviesListComponent,
-    MovieDetailsComponent
+    MovieDetailsComponent,
+    // AdvancedSearchOptions
   ],
   imports: [
     SharedModule,
@@ -33,12 +35,14 @@ const ROUTES: Routes = [
     ReactiveFormsModule,
     MatPaginatorModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDialogModule
   ],
   exports: [
   MatPaginatorModule,
   MatFormFieldModule,
-  MatSelectModule
+  MatSelectModule,
+  MatDialogModule
   ]
 })
 export class MoviesListModule { 

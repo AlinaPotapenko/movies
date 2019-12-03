@@ -18,7 +18,6 @@ export class MovieDetailsComponent implements OnInit{
     };
 
     ngOnInit() {
-      document.body.className = "background";
       this._route.params.subscribe(params => this.imdbId = params.imdbID)
       console.log(this.imdbId);
       let params = {

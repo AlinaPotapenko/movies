@@ -7,8 +7,8 @@ import { SharedModule } from '../Shared/shared.module';
 import { MatPaginatorModule} from '@angular/material/paginator';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
-import {MatDialogModule} from '@angular/material/dialog';
-
+import {MatInputModule} from '@angular/material/input';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 const ROUTES: Routes = [
   {
@@ -26,7 +26,6 @@ const ROUTES: Routes = [
   declarations: [
     MoviesListComponent,
     MovieDetailsComponent,
-    // AdvancedSearchOptions
   ],
   imports: [
     SharedModule,
@@ -36,14 +35,21 @@ const ROUTES: Routes = [
     MatPaginatorModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatDialogModule
+    MatAutocompleteModule,
+    MatInputModule
   ],
   exports: [
-  MatPaginatorModule,
-  MatFormFieldModule,
-  MatSelectModule,
-  MatDialogModule
-  ]
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatAutocompleteModule,
+    MatInputModule
+  ],
+  entryComponents: [
+  ], 
+  providers: [
+    
+  ] 
 })
 export class MoviesListModule { 
 

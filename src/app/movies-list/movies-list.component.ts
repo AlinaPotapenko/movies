@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { HttpService } from '../Shared/services/http.service';
 import { Router } from '@angular/router';
@@ -6,17 +6,15 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {PageEvent} from '@angular/material/paginator';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
-// import {MatDialogModule, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatInputModule} from '@angular/material/input';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { Observable } from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
-// export interface DialogData {
-//   animal: string;
-//   name: string;
-// }
-
-// export interface Type {
-//   value: string;
-//   viewValue: string;
-// }
+export interface Ttype {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-movies-list',
@@ -25,23 +23,33 @@ import {MatSelectModule} from '@angular/material/select';
 })
 
 
-
 export class MoviesListComponent implements OnInit{
   searchControl: FormGroup;
   movies: any[] = [];
   
   totalResults: number;
   pageEvent: PageEvent;
+  date = new Date();
+  currentYear = this.date.getFullYear(); 
 
-  // animal: string;
-  // name: string;
+  types: Ttype[] = [
+  { value: "movie", viewValue: "Movie" },
+  { value: "series", viewValue: "Series" },
+  { value: "episode", viewValue: "Episode" }
+  ];
+
+  y = new FormControl();
+  years: number[] = [];
+  filteredYears: Observable<number[]>;
   
   constructor(private _httpService: HttpService, private _router: Router) {
     this.searchControl = new FormGroup({
       s: new FormControl(),
-      type: new FormControl(),
-      y: new FormControl()
-    });
+    });    
+    for (let i = this.currentYear; i >= 1900; i--) {
+      this.years.push(i);
+    }
+    
   }
 
   ngOnInit() {
@@ -52,19 +60,35 @@ export class MoviesListComponent implements OnInit{
         this.movies = [];
       }
     })
+    // this.filteredYears = this.y.valueChanges
+    //   .pipe(
+    //     startWith(''),
+    //     map(value => this._filter(value))
+    //   );
+    
   }
+  
 
+  // private _filter(value) {
+  //   return this.years.filter(year => year.toString().includes(value));
+  // }
 
-  submitting(page?: number) {
+  
+
+  submitting(page?: string, selectedType?) {
 
     let params: any = {};
-    if (page ) {
+    
+    if (selectedType) {
+      params.type = selectedType;
+    }
+    if (page) {
       params.page = page;
     }
     Object.keys(this.searchControl.value)
       .filter(element => this.searchControl.controls[element].value)
       .map(elem => params[elem] = this.searchControl.controls[elem].value);
-
+      console.log(params)
     this._httpService.get(params)
       .subscribe(data => {
         if (data.Search) {
@@ -77,18 +101,7 @@ export class MoviesListComponent implements OnInit{
       });
   }
 
-  // openDialog(): void {
-  //   const dialogRef = this.dialog.open(AdvancedSearchOptions, {
-  //     width: '250px',
-  //     data: {name: this.name, animal: this.animal}
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log('The dialog was closed');
-  //     this.animal = result;
-  //   });
-  // }
-
+ 
   public doPaginate(e?:PageEvent) {
     this.submitting(e.pageIndex + 1);
   }
@@ -97,25 +110,6 @@ export class MoviesListComponent implements OnInit{
   this._router.navigate([`movies/details/${movie.imdbID}`]).then();
   }
 
-
 }
 
 
-
-
-  
-// @Component({
-//   selector: 'advanced-search-options',
-//   templateUrl: 'advanced-search-options.html',
-// })
-// export class AdvancedSearchOptions {
-
-//   // constructor(
-//   //   public dialogRef: MatDialogRef<AdvancedSearchOptions>,
-//   //   @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
-
-//   // onNoClick(): void {
-//   //   this.dialogRef.close();
-//   // }
-
-// }

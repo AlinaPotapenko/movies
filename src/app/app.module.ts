@@ -21,12 +21,13 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot(APP_ROUTING);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     rootRouting,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,6 +6,25 @@
     margin-right: auto;
     margin-left: auto; 
 }
+#openAdvanced {
+    display: none;
+}
+.block {
+    background-color: #e3e5e6;
+    color: #547c8a;
+    width: 45%;
+    border: 2px solid #547c8a;
+    border-radius: 7px;
+    margin-right: auto;
+    margin-left: auto; 
+    margin-top: 15px;
+}
+.advancedPanel > .block {
+    display: none;
+}
+.advancedPanel > input:checked + .block {
+    display: block;
+}
 mat-paginator {
     background: white;
     width: 55%;
@@ -15,19 +34,9 @@ mat-paginator {
     border: 2px solid #547c8a;
     color: #547c8a;
 }
-.advancedOptions {
-    box-sizing: border-box;
-    background: white;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 32px;
-    height: 45px;
-    border-radius: 7px;
-    border: 2px solid #547c8a;
+.advancedOption {
+    margin-right: 15px;
     color: #547c8a;
-    width: 220px;
-    margin-right: 10px;
-
 }
 .moviesList {
     padding: 0px;
@@ -42,6 +51,7 @@ mat-paginator {
 .inputField {
     width: 57%;
     font-family: Constantia;
+    color: #547c8a;
 }
 .button {
     background: #e3e5e6;
@@ -49,6 +59,7 @@ mat-paginator {
     border: 1px solid #547c8a;
     border-radius: 3px;
     height: 23px;
+    font-family: Constantia;
 }
 button:hover {
     cursor: pointer;

@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpService } from './services/http.service';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -14,7 +15,9 @@ import { HttpService } from './services/http.service';
     // Http
     HttpClientModule,
     // Router
-    RouterModule
+    RouterModule,
+
+
   ],
   declarations: [],
   providers: [
@@ -25,7 +28,8 @@ import { HttpService } from './services/http.service';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    
   ]
 })
 export class SharedModule { }

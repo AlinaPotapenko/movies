@@ -1,23 +1,36 @@
 <h1 class = "heading">MovieLand</h1>
 
 
-<form [formGroup] = "searchControl" (submit)="submitting()" class = "searchField">
+<form [formGroup] = "searchControl" (submit)="submitting(selectedType)" class = "searchField">
     <input formControlName = "s" placeholder="  type a movie title here" class = "inputField">
     <button class = "button" type="submit">Search</button>
-    <button class = "button" >...Advanced</button>
+    <button mat-button class = "button"><label for = "openAdvanced">...Advanced</label></button>
+    <div class = "advancedPanel">
+        <input type="checkbox" id="openAdvanced">
+        <div class = "block"> 
     
-    <!-- <div>
-    <mat-form-field formControlName = "type" class = "advancedOptions">
-    <mat-label>Type:</mat-label>
-    <mat-select>
-    <mat-option *ngFor="let type of types" [value]="type.value">
-      {{type.viewValue}}
-    </mat-option>
-    </mat-select>
-    </mat-form-field>
+        <mat-form-field class = "advancedOption">
+        <mat-label>Type</mat-label>
+        <mat-select [(value)]="selectedType">
+        <mat-option *ngFor="let type of types" [value]="type.value">
+          {{type.viewValue}}
+        </mat-option>
+         </mat-select>
+        </mat-form-field>
 
-    </div> -->
 
+
+        <mat-form-field class = "advancedOption">
+        <input type="text" placeholder="Select a year" aria-label="Number" matInput [formControl]="y" [matAutocomplete]="auto">
+         <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let year of years" [value]="year">
+        {{ year }}
+        </mat-option>
+        </mat-autocomplete>
+        </mat-form-field>
+
+        </div>
+        </div> 
 </form>
 
 <ul *ngIf="movies.length" class="moviesList">

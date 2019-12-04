@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup} from '@angular/forms';
 import { HttpService } from '../Shared/services/http.service';
 import { Router } from '@angular/router';
 import {MatPaginatorModule} from '@angular/material/paginator';
@@ -24,13 +24,15 @@ export interface Ttype {
 
 
 export class MoviesListComponent implements OnInit{
-  searchControl: FormGroup;
+  searchControl: FormGroup; 
   movies: any[] = [];
   
   totalResults: number;
   pageEvent: PageEvent;
   date = new Date();
   currentYear = this.date.getFullYear(); 
+  typeParam: String = "";
+  yearParam = "";
 
   types: Ttype[] = [
   { value: "movie", viewValue: "Movie" },
@@ -60,35 +62,41 @@ export class MoviesListComponent implements OnInit{
         this.movies = [];
       }
     })
-    // this.filteredYears = this.y.valueChanges
-    //   .pipe(
-    //     startWith(''),
-    //     map(value => this._filter(value))
-    //   );
+    this.filteredYears = this.y.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
     
   }
   
+  private _filter(value) {
+    return this.years.filter(year => year.toString().includes(value));
+  }
 
-  // private _filter(value) {
-  //   return this.years.filter(year => year.toString().includes(value));
-  // }
+  settingType(type) {
+    return this.typeParam = type;
+  }
 
-  
+  settingYear(year) {
+    return this.yearParam = year;
+  }
 
-  submitting(page?: string, selectedType?) {
+  submitting(page?) {
 
     let params: any = {};
     
-    if (selectedType) {
-      params.type = selectedType;
-    }
     if (page) {
       params.page = page;
     }
+    params.type = this.typeParam;
+    params.y = this.yearParam;
+
     Object.keys(this.searchControl.value)
       .filter(element => this.searchControl.controls[element].value)
       .map(elem => params[elem] = this.searchControl.controls[elem].value);
       console.log(params)
+      
     this._httpService.get(params)
       .subscribe(data => {
         if (data.Search) {
@@ -100,6 +108,14 @@ export class MoviesListComponent implements OnInit{
         }
       });
   }
+
+  validate(value) {
+    if(value == "") {
+      document.getElementById("sValue").style.boxShadow = "inset 0 0 0.3em red";
+    } else {
+      document.getElementById("sValue").style.boxShadow = "";
+    }
+ }
 
  
   public doPaginate(e?:PageEvent) {

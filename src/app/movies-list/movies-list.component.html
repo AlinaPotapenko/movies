@@ -1,9 +1,9 @@
 <h1 class = "heading">MovieLand</h1>
 
 
-<form [formGroup] = "searchControl" (submit)="submitting(selectedType)" class = "searchField">
-    <input formControlName = "s" placeholder="  type a movie title here" class = "inputField">
-    <button class = "button" type="submit">Search</button>
+<form [formGroup] = "searchControl" (submit)="submitting()" class = "searchField"><label for ="sValue">
+    <input formControlName = "s" placeholder="  type a movie title here" class = "inputField" #sValue id = "sValue"></label>
+    <button class = "button" type="submit" (click) = "validate(sValue.value)">Search</button>
     <button mat-button class = "button"><label for = "openAdvanced">...Advanced</label></button>
     <div class = "advancedPanel">
         <input type="checkbox" id="openAdvanced">
@@ -11,8 +11,8 @@
     
         <mat-form-field class = "advancedOption">
         <mat-label>Type</mat-label>
-        <mat-select [(value)]="selectedType">
-        <mat-option *ngFor="let type of types" [value]="type.value">
+        <mat-select [(value)]="type">
+        <mat-option *ngFor="let type of types" [value]="type.value" (onSelectionChange) = "settingType(type.viewValue)">
           {{type.viewValue}}
         </mat-option>
          </mat-select>
@@ -23,7 +23,7 @@
         <mat-form-field class = "advancedOption">
         <input type="text" placeholder="Select a year" aria-label="Number" matInput [formControl]="y" [matAutocomplete]="auto">
          <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let year of years" [value]="year">
+        <mat-option *ngFor="let year of filteredYears | async" [value]="year" (onSelectionChange) = "settingYear(year)">
         {{ year }}
         </mat-option>
         </mat-autocomplete>

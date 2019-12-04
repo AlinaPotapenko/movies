@@ -10,10 +10,10 @@
     display: none;
 }
 .block {
-    background-color: #e3e5e6;
-    color: #547c8a;
-    width: 45%;
-    border: 2px solid #547c8a;
+    background-color: #edebeb;
+    color: #545454;
+    width: 50%;
+    border: 2px solid #636262;
     border-radius: 7px;
     margin-right: auto;
     margin-left: auto; 
@@ -26,17 +26,17 @@
     display: block;
 }
 mat-paginator {
-    background: white;
+    background: #edebeb;
     width: 55%;
     margin-right: auto;
     margin-left: auto; 
     border-radius: 7px;
-    border: 2px solid #547c8a;
-    color: #547c8a;
+    border: 2px solid #636262;
+    color: #545454;
 }
 .advancedOption {
     margin-right: 15px;
-    color: #547c8a;
+    color: #545454;
 }
 .moviesList {
     padding: 0px;
@@ -47,18 +47,20 @@ mat-paginator {
     color: white;
     margin-top: 82px;
     font-size: 3em;
+    text-shadow: #545454 0 0 15px; // #a19b9a
 }
 .inputField {
     width: 57%;
     font-family: Constantia;
-    color: #547c8a;
+    color: #a19b9a;
+    border-radius: 3px;
 }
 .button {
-    background: #e3e5e6;
-    color: #547c8a;
-    border: 1px solid #547c8a;
+    background: #edebeb;
+    color: #545454;
+    border: 1px solid #636262;
     border-radius: 3px;
-    height: 23px;
+    height: 22px;
     font-family: Constantia;
 }
 button:hover {
@@ -72,21 +74,19 @@ button:hover {
     box-sizing: border-box;
     list-style-type: none;
     display: flex;
-    background-color: white;
     flex-direction: column;
     justify-content: space-around;
     align-items: stretch;
     width: 55%;
     margin-right: auto;
-    background-color: #e3e5e6;
+    background-color: #edebeb;
     margin-left: auto;
     padding: 5px;
     border-radius: 7px;
     margin-bottom: 4px;
-    border: 2px solid #547c8a;
+    border: 2px solid #636262;
     font-family: Constantia;
-    color: #547c8a;
-    font-size: 1.1em;
+    color: #545454;
     font-weight: bolder;
 }
 .container:hover {

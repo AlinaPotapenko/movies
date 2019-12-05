@@ -1,5 +1,6 @@
 <h1 class = "heading">{{movie.Title}}</h1>
 <a routerLink="/" routerLinkActive="active" class = "button">Back to homepage</a>
+<div class = "matSpinner"><mat-spinner *ngIf = "showSpinner" diameter = "30"></mat-spinner></div>
 <div class = "container">
 	<img *ngIf ='movie.Poster != "N/A"; else noPoster'src="{{movie.Poster}}"> 
 	<ng-template #noPoster>
@@ -19,6 +20,7 @@
 		<p *ngIf ='movie.Awards != "N/A" && movie.Awards'class ="item"><span>Awards: </span> {{movie.Awards}}</p>
 		<p *ngIf ='movie.Plot != "N/A" && movie.Plot' class ="item">{{movie.Plot}}</p>
 		<p *ngIf ='movie.imdbRating != "N/A" && movie.imdbRating' class ="item"><span>ImdbRating: </span> {{movie.imdbRating}} ★</p>
+		<p><mat-checkbox>Add to Favourites</mat-checkbox></p>
 	</section>
 </div>
 

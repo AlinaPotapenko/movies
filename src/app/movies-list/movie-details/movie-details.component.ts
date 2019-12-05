@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class MovieDetailsComponent implements OnInit{
   public imdbId: string;
   public movie: any[] = [];
+  public showSpinner = false;
   
 
   constructor(private _route: ActivatedRoute, private _httpService: HttpService,
@@ -18,6 +19,7 @@ export class MovieDetailsComponent implements OnInit{
     };
 
     ngOnInit() {
+      this.showSpinner = true;
       this._route.params.subscribe(params => this.imdbId = params.imdbID)
       console.log(this.imdbId);
       let params = {
@@ -31,6 +33,7 @@ export class MovieDetailsComponent implements OnInit{
             this.movie = data;
           }
           console.log(this.movie);
+          this.showSpinner = false;
         });  
 
       }

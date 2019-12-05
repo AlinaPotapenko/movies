@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup} from '@angular/forms';
 import { HttpService } from '../Shared/services/http.service';
-import { Router } from '@angular/router';
+import { Router} from '@angular/router';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {PageEvent} from '@angular/material/paginator';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -33,6 +33,7 @@ export class MoviesListComponent implements OnInit{
   currentYear = this.date.getFullYear(); 
   typeParam: String = "";
   yearParam = "";
+  showSpinner = false;
 
   types: Ttype[] = [
   { value: "movie", viewValue: "Movie" },
@@ -45,6 +46,7 @@ export class MoviesListComponent implements OnInit{
   filteredYears: Observable<number[]>;
   
   constructor(private _httpService: HttpService, private _router: Router) {
+    
     this.searchControl = new FormGroup({
       s: new FormControl(),
     });    
@@ -75,15 +77,16 @@ export class MoviesListComponent implements OnInit{
   }
 
   settingType(type) {
-    return this.typeParam = type;
+    return this.typeParam = type.value; 
   }
 
   settingYear(year) {
-    return this.yearParam = year;
+    return this.yearParam = year.option.value;
   }
 
   submitting(page?) {
-
+    this.showSpinner = true;
+    
     let params: any = {};
     
     if (page) {
@@ -96,16 +99,17 @@ export class MoviesListComponent implements OnInit{
       .filter(element => this.searchControl.controls[element].value)
       .map(elem => params[elem] = this.searchControl.controls[elem].value);
       console.log(params)
-      
+
+
     this._httpService.get(params)
       .subscribe(data => {
-        if (data.Search) {
+         if (data.Search) {
           this.movies = data.Search;
           this.totalResults = data.totalResults;
-
+          
           console.log(this.movies);
-      
         }
+        this.showSpinner = false;
       });
   }
 

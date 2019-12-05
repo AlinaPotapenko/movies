@@ -1,3 +1,4 @@
+
 .searchField {
     box-sizing: border-box;
     width: 60%;
@@ -8,6 +9,14 @@
 }
 #openAdvanced {
     display: none;
+}
+.matSpinner {
+    position: fixed;
+    top: 50%;
+    right: 50%;
+}
+.matSpinner ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+stroke: #636262
 }
 .block {
     background-color: #edebeb;

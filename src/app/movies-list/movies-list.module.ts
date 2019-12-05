@@ -9,7 +9,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 const ROUTES: Routes = [
   {
     path: '',
@@ -36,6 +37,8 @@ const ROUTES: Routes = [
     MatFormFieldModule,
     MatSelectModule,
     MatAutocompleteModule,
+    MatProgressSpinnerModule,
+    MatCheckboxModule,
     MatInputModule
   ],
   exports: [
@@ -43,6 +46,8 @@ const ROUTES: Routes = [
     MatFormFieldModule,
     MatSelectModule,
     MatAutocompleteModule,
+    MatProgressSpinnerModule,
+    MatCheckboxModule,
     MatInputModule
   ],
   entryComponents: [

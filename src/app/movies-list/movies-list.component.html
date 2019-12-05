@@ -11,8 +11,9 @@
     
         <mat-form-field class = "advancedOption">
         <mat-label>Type</mat-label>
-        <mat-select [(value)]="type">
-        <mat-option *ngFor="let type of types" [value]="type.value" (onSelectionChange) = "settingType(type.viewValue)">
+          
+        <mat-select [(value)]="type" (selectionChange) = "settingType($event)">
+        <mat-option *ngFor="let type of types" [value]="type.value">
           {{type.viewValue}}
         </mat-option>
          </mat-select>
@@ -22,8 +23,8 @@
 
         <mat-form-field class = "advancedOption">
         <input type="text" placeholder="Select a year" aria-label="Number" matInput [formControl]="y" [matAutocomplete]="auto">
-         <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let year of filteredYears | async" [value]="year" (onSelectionChange) = "settingYear(year)">
+         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="settingYear($event)">
+        <mat-option *ngFor="let year of filteredYears | async" [value]="year" >
         {{ year }}
         </mat-option>
         </mat-autocomplete>
@@ -32,7 +33,7 @@
         </div>
         </div> 
 </form>
-
+<div class = "matSpinner"><mat-spinner *ngIf = "showSpinner" diameter = "30"></mat-spinner></div>
 <ul *ngIf="movies.length" class="moviesList">
         <li *ngFor="let movie of movies" class = "container" (click) = "navigateToDetails(movie)">
             

@@ -7,7 +7,72 @@
     margin-bottom: 23px;
     text-shadow: #545454 0 0 12px;
 }
-
+i {
+   color: #e4018d; 
+}
+.comment {
+    box-sizing: border-box;
+    margin-left: 27%;
+    margin-right: auto;
+    width: 63%;
+    margin-top: 15px; 
+    border: 2px solid #636262;
+    border-radius: 3px;
+    background: #edebeb;
+    padding: 15px;
+    padding-top: 15px;
+    padding-left: 17px;
+    font-family: Constantia;
+}
+#float-input {
+    width: 99%;
+}
+.replyForComment {
+    text-align: center;
+    font-family: Constantia;
+    color: #545454;
+}
+.submitButton {
+    margin-left: 94%;
+    background: #edebeb;
+    color: #545454;
+    border: 1px solid #636262;
+    border-radius: 3px;
+}
+.someFeatures {
+    display: flex;
+    flex-direction: row;
+}
+.checkbox {
+    background: #edebeb;
+    border: 2px solid #636262;
+    border-radius: 3px;
+    width: 10%;
+    margin-left: 10%;
+    margin-right: auto;
+    font-family: Constantia;
+    text-align: center;
+    padding: 7px;
+}
+/*.mat-ripple-element {
+    background-color: #e4018d;
+}*/
+.rating {
+    display: block;
+    background: #edebeb;
+    border: 2px solid #636262;
+    border-radius: 3px;
+    width: 12%;
+    margin-bottom: 15px;
+    margin-right: 10%;
+    margin-left: auto;
+    color: #e4018d;
+    font-family: Constantia;
+    text-align: center;
+}
+p-rating {
+    cursor: pointer;
+}
 span {
 	font-weight: bold;
 }
@@ -15,7 +80,7 @@ span {
 	height: 480px;
 	width: 330px;
 }
-p {
+.items p {
 	border-bottom: 1px solid white;
 }
 .matSpinner {
@@ -36,7 +101,6 @@ stroke: #636262
     text-decoration: none;
     text-align: center;
     width: 30%;
-    height: 23px;
     margin-bottom: 15px;
     margin-left: auto;
     margin-right: auto;

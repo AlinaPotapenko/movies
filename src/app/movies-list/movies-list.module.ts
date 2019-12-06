@@ -12,6 +12,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {RatingModule} from 'primeng/rating';
+import {InputTextareaModule} from 'primeng/inputtextarea';
 const ROUTES: Routes = [
   {
     path: '',
@@ -41,6 +42,7 @@ const ROUTES: Routes = [
     MatProgressSpinnerModule,
     MatCheckboxModule,
     RatingModule,
+    InputTextareaModule,
     MatInputModule
   ],
   exports: [
@@ -51,6 +53,7 @@ const ROUTES: Routes = [
     MatProgressSpinnerModule,
     MatCheckboxModule,
     RatingModule,
+    InputTextareaModule,
     MatInputModule
   ],
   entryComponents: [

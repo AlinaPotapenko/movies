@@ -11,6 +11,9 @@ export class MovieDetailsComponent implements OnInit{
   public imdbId: string;
   public movie: any[] = [];
   public showSpinner = false;
+  public val: number;
+  public showInput = true;
+  public msg: string = "";
   
   
 
@@ -39,9 +42,18 @@ export class MovieDetailsComponent implements OnInit{
 
       }
 
-      
-    
+    validateComment(comment) {
+      if (!comment) {
+        document.getElementById("float-input").style.boxShadow = "inset 0 0 0.3em red";
+        setTimeout(function() {
+        document.getElementById("float-input").style.boxShadow = ""; 
+      }, 3000);
+      } else {
+      this.showInput = false;
+      this.msg = "Thank you for your comment. It will appear after moderation.";    
   }
+  }
+    }
  
 
   

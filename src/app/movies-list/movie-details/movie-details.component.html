@@ -1,9 +1,13 @@
 <h1 class = "heading">{{movie.Title}}</h1>
 
-<a routerLink="/" routerLinkActive="active" class = "button">Back to homepage</a>
+<a routerLink="/" routerLinkActive="active" class = "button"><i class="fa fa-home"></i>   Back to homepage</a>
 <div class = "matSpinner"><mat-spinner *ngIf = "showSpinner" diameter = "30"></mat-spinner></div>
-<div class = "whole">
-<p-rating [(ngModel)]="val"></p-rating>
+
+<div class = "someFeatures">
+	<p class = "checkbox"><mat-checkbox>Add to Favourites</mat-checkbox></p>
+	<p class = "rating">Rate this movie: <p-rating [(ngModel)]="val" stars="10"[cancel]="false"></p-rating></p>
+</div>
+
 <div class = "container">
 	<img *ngIf ='movie.Poster != "N/A"; else noPoster'src="{{movie.Poster}}"> 
 	<ng-template #noPoster>
@@ -24,8 +28,16 @@
 		<p *ngIf ='movie.Plot != "N/A" && movie.Plot' class ="item">{{movie.Plot}}</p>
 		<p *ngIf ='movie.imdbRating != "N/A" && movie.imdbRating' class ="item"><span>ImdbRating: </span> {{movie.imdbRating}} <img width= "15px" height = "15px" src="http://s1.iconbird.com/ico/2013/12/505/w450h4001385925286Star.png"></p>
 		
-		<p><mat-checkbox>Add to Favourites</mat-checkbox></p>
+		
 	</section>
 </div>
+<div class = "comment">
+	<span *ngIf = "showInput" class="ui-float-label">
+        <textarea id="float-input" [rows]="5" pInputTextarea autoResize="autoResize" #comment></textarea>
+        <label for="float-input">Leave your comment here...</label>
+        <button class = "submitButton" (click) = "validateComment(comment.value)">Submit</button>
+    </span>
+    <p class = "replyForComment" *ngIf="msg">{{msg}}</p>
 </div>
+
 

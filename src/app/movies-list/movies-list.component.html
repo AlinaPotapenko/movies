@@ -1,6 +1,5 @@
 <h1 class = "heading">MovieLand</h1>
 
-
 <form [formGroup] = "searchControl" (submit)="submitting()" class = "searchField"><label for ="sValue">
     <input formControlName = "s" placeholder="  type a movie title here" class = "inputField" #sValue id = "sValue"></label>
     <button class = "button" type="submit" (click) = "validate(sValue.value)">Search</button>

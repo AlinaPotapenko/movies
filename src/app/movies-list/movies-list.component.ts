@@ -35,6 +35,7 @@ export class MoviesListComponent implements OnInit{
   yearParam = "";
   showSpinner = false;
 
+
   types: Ttype[] = [
   { value: "movie", viewValue: "Movie" },
   { value: "series", viewValue: "Series" },

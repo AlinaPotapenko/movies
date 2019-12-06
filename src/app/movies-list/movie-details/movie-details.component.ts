@@ -12,6 +12,7 @@ export class MovieDetailsComponent implements OnInit{
   public movie: any[] = [];
   public showSpinner = false;
   
+  
 
   constructor(private _route: ActivatedRoute, private _httpService: HttpService,
     private _router: Router) {
@@ -37,7 +38,8 @@ export class MovieDetailsComponent implements OnInit{
         });  
 
       }
-    
+
+      
     
   }
  

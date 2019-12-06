@@ -11,6 +11,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {RatingModule} from 'primeng/rating';
 const ROUTES: Routes = [
   {
     path: '',
@@ -26,7 +27,7 @@ const ROUTES: Routes = [
 @NgModule({
   declarations: [
     MoviesListComponent,
-    MovieDetailsComponent,
+    MovieDetailsComponent
   ],
   imports: [
     SharedModule,
@@ -39,6 +40,7 @@ const ROUTES: Routes = [
     MatAutocompleteModule,
     MatProgressSpinnerModule,
     MatCheckboxModule,
+    RatingModule,
     MatInputModule
   ],
   exports: [
@@ -48,6 +50,7 @@ const ROUTES: Routes = [
     MatAutocompleteModule,
     MatProgressSpinnerModule,
     MatCheckboxModule,
+    RatingModule,
     MatInputModule
   ],
   entryComponents: [

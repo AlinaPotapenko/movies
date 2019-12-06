@@ -28,7 +28,7 @@ const ROUTES: Routes = [
 @NgModule({
   declarations: [
     MoviesListComponent,
-    MovieDetailsComponent
+    MovieDetailsComponent,
   ],
   imports: [
     SharedModule,

@@ -4,7 +4,7 @@
 <div class = "matSpinner"><mat-spinner *ngIf = "showSpinner" diameter = "30"></mat-spinner></div>
 
 <div class = "someFeatures">
-	<p class = "checkbox"><mat-checkbox>Add to Favourites</mat-checkbox></p>
+	<p class = "checkbox"><mat-checkbox [(ngModel)]="checked" (change) = "validateFav($event.checked)">{{favMsg}}</mat-checkbox></p>
 	<p class = "rating">Rate this movie: <p-rating [(ngModel)]="val" stars="10"[cancel]="false"></p-rating></p>
 </div>
 
@@ -33,7 +33,7 @@
 </div>
 <div class = "comment">
 	<span *ngIf = "showInput" class="ui-float-label">
-        <textarea id="float-input" [rows]="5" pInputTextarea autoResize="autoResize" #comment></textarea>
+        <textarea id="float-input" [rows]="4" pInputTextarea autoResize="autoResize" #comment></textarea>
         <label for="float-input">Leave your comment here...</label>
         <button class = "submitButton" (click) = "validateComment(comment.value)">Submit</button>
     </span>

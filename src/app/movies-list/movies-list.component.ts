@@ -117,6 +117,9 @@ export class MoviesListComponent implements OnInit{
   validate(value) {
     if(value == "") {
       document.getElementById("sValue").style.boxShadow = "inset 0 0 0.3em red";
+        setTimeout(function() {
+        document.getElementById("sValue").style.boxShadow = ""; 
+      }, 3000);
     } else {
       document.getElementById("sValue").style.boxShadow = "";
     }

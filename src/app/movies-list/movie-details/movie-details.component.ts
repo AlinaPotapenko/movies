@@ -14,6 +14,7 @@ export class MovieDetailsComponent implements OnInit{
   public val: number;
   public showInput = true;
   public msg: string = "";
+  public favMsg: string = "Add to Favourites";
   
   
 
@@ -29,7 +30,6 @@ export class MovieDetailsComponent implements OnInit{
       let params = {
         i: this.imdbId
       };
-      console.log(params);
 
       this._httpService.get(params)
         .subscribe(data => {
@@ -53,7 +53,18 @@ export class MovieDetailsComponent implements OnInit{
       this.msg = "Thank you for your comment. It will appear after moderation.";    
   }
   }
+
+    validateFav(checked) {
+      if (checked) {
+        this.favMsg = "Added to Favourites";
+      } else {
+        this.favMsg = "Add to Favourites";
+      }
     }
+      
+
+    }
+    
  
 
   

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 const API_URL = environment.API_URL;
+const Errors_URL = environment.Errors_URL;
 const API_CONFIG = environment.API_CONFIG;
 
 @Injectable({
@@ -31,6 +32,12 @@ export class HttpService {
   public get<T>(params?: any): Observable<any> {
     const getParams = { params: params };
     return this.http.get<T>(API_URL, getParams);
+  }
+
+  public getError<T>(endpoint: string, params?: any): Observable<any> {
+    this.requestUrl = Errors_URL + API_CONFIG[endpoint];
+    const getParams = { params: params };
+    return this.http.get<T>(this.requestUrl, getParams);
   }
 
   public post<T>(data: any, queryParams?: any): Observable<any> {

@@ -5,9 +5,11 @@
 export const environment = {
   production: false,
   API_URL: 'http://www.omdbapi.com/?apikey=15cd9fc8&plot=full',
+  Errors_URL: 'http://www.mocky.io/v2/',
   API_CONFIG  : {
-    /* Global search */
-    globalSearch: ''
+  	/* Movies List */
+    404: '5dee40523300005a009845cd',
+    503: '5dee427433000059009845e0'
   }
 };
 

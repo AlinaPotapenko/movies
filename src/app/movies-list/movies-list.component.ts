@@ -9,7 +9,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { Observable } from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import {map, startWith, finalize } from 'rxjs/operators';
 
 export interface Ttype {
   value: string;
@@ -58,6 +58,12 @@ export class MoviesListComponent implements OnInit{
   }
 
   ngOnInit() {
+    // this._httpService.getError('404')
+    //   .subscribe(() => {});
+
+    //   this._httpService.getError('503')
+    //   .subscribe(() => {});
+
     this.searchControl.valueChanges
     .subscribe((value) => {
       let movieTitle: string = value.s;
@@ -103,6 +109,9 @@ export class MoviesListComponent implements OnInit{
 
 
     this._httpService.get(params)
+      .pipe(
+        finalize(() => this.showSpinner = false)
+      )
       .subscribe(data => {
          if (data.Search) {
           this.movies = data.Search;
@@ -110,7 +119,6 @@ export class MoviesListComponent implements OnInit{
           
           console.log(this.movies);
         }
-        this.showSpinner = false;
       });
   }
 

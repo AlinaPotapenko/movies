@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/Operators';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,11 @@ import { Observable } from 'rxjs';
 export class Myinterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-  		const request = req.clone({ params: req.params.set('x', '5')});
-  		return next.handle(request);
+  		return next.handle(req).catchError( error => {
+  			if (error.code == "503") {
+  				console.log("redirect!");
+  			}
+  			return throwError(error);
+  		});
   }
 }

@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../Shared/shared.module';
 import { ResolverService } from 'C:/Users/Alina/Desktop/movies/src/app/resolver.service';
 import { SharedMaterialModule } from '../Shared/shared-material.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 const ROUTES: Routes = [
   {

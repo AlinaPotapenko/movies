@@ -46,7 +46,7 @@ export class MoviesListComponent implements OnInit{
   years: number[] = [];
   filteredYears: Observable<number[]>;
   
-  constructor(private _httpService: HttpService, private _router: Router) {
+  constructor(private messageService: MessageService, private _httpService: HttpService, private _router: Router) {
     
     this.searchControl = new FormGroup({
       s: new FormControl(),
@@ -58,11 +58,6 @@ export class MoviesListComponent implements OnInit{
   }
 
   ngOnInit() {
-    // this._httpService.getError('404')
-    //   .subscribe(() => {});
-
-    //   this._httpService.getError('503')
-    //   .subscribe(() => {});
 
     this.searchControl.valueChanges
     .subscribe((value) => {
@@ -142,6 +137,17 @@ export class MoviesListComponent implements OnInit{
   this._router.navigate([`movies/details/${movie.imdbID}`]).then();
   }
 
+
+  showError() {
+    this._httpService.getError('404')
+      .subscribe(() => {});
+    // this.messageService.add({severity:'error', summary: 'Error Message', detail:'Validation failed'});
+  }
+
+  makeError503() {
+       this._httpService.getError('503')
+      .subscribe(() => {});
+  }
 }
 
 

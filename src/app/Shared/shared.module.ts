@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpService } from './services/http.service';
+import { Myinterceptor } from '../Myinterceptor.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 @NgModule({
@@ -21,7 +23,12 @@ import { HttpService } from './services/http.service';
   ],
   declarations: [],
   providers: [
-    HttpService
+    HttpService,
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: Myinterceptor,
+    multi: true
+  }
   ],
   exports: [
     CommonModule,

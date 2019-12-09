@@ -15,9 +15,11 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 
 import {RatingModule} from 'primeng/rating';
 import {InputTextareaModule} from 'primeng/inputtextarea';
-import { ResolverService } from 'C:/Users/Alina/Desktop/movies/src/app/resolver.service';
+import { ResolverService } from '../resolver.service';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ConfirmationService} from 'primeng/api';
+import {ToastModule} from 'primeng/toast';
+import {MessageService} from 'primeng/api';
 
 @NgModule({
   declarations: [],
@@ -34,6 +36,7 @@ import {ConfirmationService} from 'primeng/api';
     ConfirmDialogModule,
     MatInputModule,
     FormsModule,
+    ToastModule,
     ReactiveFormsModule
   ],
   exports: [
@@ -46,10 +49,12 @@ import {ConfirmationService} from 'primeng/api';
     RatingModule,
     InputTextareaModule,
     ConfirmDialogModule,
+    ToastModule,
     MatInputModule
   ],
   providers: [
-    ConfirmationService
+    ConfirmationService,
+    MessageService
   ]
 })
 export class SharedMaterialModule { }

@@ -14,7 +14,6 @@ export class AuthService {
 
   isAuth() {
   	let access = localStorage.getItem("Access:");
-  	console.log(access)
   	return Boolean(access);
   }
 }

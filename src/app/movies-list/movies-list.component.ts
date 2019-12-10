@@ -36,8 +36,7 @@ export class MoviesListComponent implements OnInit{
   typeParam: String = "";
   yearParam = "";
   showSpinner = false;
-  public error404: {};
-  public error503: {};
+  public userName = localStorage.getItem("Name:");
 
 
   types: Ttype[] = [
@@ -137,7 +136,12 @@ export class MoviesListComponent implements OnInit{
   }
 
   navigateToDetails(movie) {
-  this._router.navigate([`movies/details/${movie.imdbID}`]).then();
+    this._router.navigate([`movies/details/${movie.imdbID}`]).then();
+  }
+
+  logOut() {
+    this._router.navigate([`login`]).then();
+    localStorage.clear();
   }
 
 

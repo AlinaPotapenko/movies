@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpService } from './services/http.service';
-import { Myinterceptor } from '../Myinterceptor.service';
+import { Myinterceptor } from '../interceptors/Myinterceptor.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 

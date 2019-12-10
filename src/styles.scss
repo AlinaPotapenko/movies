@@ -1,8 +1,11 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-
+@import "../node_modules/primeng/resources/themes/nova-light/theme.css";
+@import "../node_modules/primeng/resources/primeng.min.css";
 body {
 	background-image: url(assets/images/wall2.jpg);
 	background-size: 100%;
 }
-
+body {
+    margin: 0px;
+}
 

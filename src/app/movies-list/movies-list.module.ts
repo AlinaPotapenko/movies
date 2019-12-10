@@ -10,7 +10,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 const ROUTES: Routes = [
   {
     path: '',
-    component: MoviesListComponent
+    component: MoviesListComponent,
   },
   {
     path: 'details/:imdbID',
@@ -31,12 +31,10 @@ const ROUTES: Routes = [
     SharedMaterialModule,
   ],
   exports: [
-  SharedMaterialModule,
+    SharedMaterialModule,
   ],
-  entryComponents: [
-  ], 
-  providers: [
-  ] 
+  entryComponents: [], 
+  providers: [] 
 })
 export class MoviesListModule { 
 

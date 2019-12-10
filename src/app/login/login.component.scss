@@ -1,0 +1,52 @@
+@import "../../../node_modules/primeng/resources/themes/nova-light/theme.css";
+.loginControl {
+	box-sizing: border-box;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+	margin-top: 8%;
+	background-color: #edebeb;
+	border: 2px solid #636262;
+	width: 20%;
+	border-radius: 7px;
+	padding: 20px;
+	height: 183px;
+}
+
+.wrongCredentials {
+    color: red;
+    margin-top: 0;
+    margin-bottom: 4px;
+    font-size: 0.9em;
+}
+.ui-float-label {  /* for "email" and "password labels */
+	display: inline;
+	margin-right: auto;
+	margin-left: auto; 
+}
+.pswdForm {
+	margin-right: auto;
+	margin-left: auto;
+	width: 80%;
+	margin-top: 15px;
+}
+.emailForm {
+	margin-top: 5px;
+	width: 80%;
+}
+.loginButton {
+	margin-top: 15px;
+}
+:host ::ng-deep.ui-button, :host ::ng-deep.ui-button:enabled:hover {
+ 	background-color: #e4018d;
+ 	border: 1px solid white;
+}
+.heading {
+	text-align: center;
+    font-family: Constantia;
+    color: white;
+    margin-top: 82px;
+    font-size: 3em;
+    text-shadow: #545454 0 0 15px; // 
+}
+

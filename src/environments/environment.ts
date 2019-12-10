@@ -7,7 +7,7 @@ export const environment = {
   API_URL: 'http://www.omdbapi.com/?apikey=15cd9fc8&plot=full',
   Errors_URL: 'http://www.mocky.io/v2/',
   API_CONFIG  : {
-  	/* Movies List */
+  	/* Movies List Errors */
     404: '5dee40523300005a009845cd',
     503: '5dee427433000059009845e0'
   }

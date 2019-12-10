@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup} from '@angular/forms';
-import { HttpService } from '../Shared/services/http.service';
 import { Router} from '@angular/router';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {PageEvent} from '@angular/material/paginator';
@@ -10,6 +9,9 @@ import {MatInputModule} from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { Observable } from 'rxjs';
 import {map, startWith, finalize } from 'rxjs/operators';
+import {MessageService} from 'primeng/api';
+
+import { HttpService } from '../Shared/services/http.service';
 
 export interface Ttype {
   value: string;
@@ -34,6 +36,8 @@ export class MoviesListComponent implements OnInit{
   typeParam: String = "";
   yearParam = "";
   showSpinner = false;
+  public error404: {};
+  public error503: {};
 
 
   types: Ttype[] = [
@@ -127,7 +131,6 @@ export class MoviesListComponent implements OnInit{
       document.getElementById("sValue").style.boxShadow = "";
     }
  }
-
  
   public doPaginate(e?:PageEvent) {
     this.submitting(e.pageIndex + 1);
@@ -138,16 +141,12 @@ export class MoviesListComponent implements OnInit{
   }
 
 
-  showError() {
-    this._httpService.getError('404')
-      .subscribe(() => {});
-    // this.messageService.add({severity:'error', summary: 'Error Message', detail:'Validation failed'});
-  }
+  // makeError(errorCode) {
+  //   let error = {};
+  //   this._httpService.getError(errorCode)
+  //     .subscribe(() => {});
+  // }
 
-  makeError503() {
-       this._httpService.getError('503')
-      .subscribe(() => {});
-  }
 }
 
 

@@ -5,21 +5,23 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpService } from './services/http.service';
 
-import { MatPaginatorModule} from '@angular/material/paginator';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatSelectModule} from '@angular/material/select';
-import {MatInputModule} from '@angular/material/input';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
-import {RatingModule} from 'primeng/rating';
-import {InputTextareaModule} from 'primeng/inputtextarea';
+import { RatingModule } from 'primeng/rating';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ResolverService } from '../resolver.service';
-import {ConfirmDialogModule} from 'primeng/confirmdialog';
-import {ConfirmationService} from 'primeng/api';
-import {ToastModule} from 'primeng/toast';
-import {MessageService} from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
 
 @NgModule({
   declarations: [],
@@ -37,6 +39,8 @@ import {MessageService} from 'primeng/api';
     MatInputModule,
     FormsModule,
     ToastModule,
+    InputTextModule,
+    PasswordModule,
     ReactiveFormsModule
   ],
   exports: [
@@ -50,6 +54,8 @@ import {MessageService} from 'primeng/api';
     InputTextareaModule,
     ConfirmDialogModule,
     ToastModule,
+    InputTextModule,
+    PasswordModule,
     MatInputModule
   ],
   providers: [

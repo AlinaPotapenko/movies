@@ -1,44 +1,73 @@
 <h1 class = "heading">{{movie.Title}}</h1>
 
-<a routerLink="/movies" routerLinkActive="active" class = "button"><i class="fa fa-home"></i>   Back to homepage</a>
-<div class = "matSpinner"><mat-spinner *ngIf = "showSpinner" diameter = "30"></mat-spinner></div>
+  <a routerLink="/movies" routerLinkActive="active" class = "button">
+  	 <i class="fa fa-home"></i>   Back to homepage
+  </a>
+  <div class = "matSpinner">
+  	 <mat-spinner *ngIf = "showSpinner" diameter = "30"></mat-spinner>
+  </div>
 
-<div class = "someFeatures">
-	<p class = "checkbox"><mat-checkbox [(ngModel)]="checked" (change) = "validateFav($event.checked)">{{favMsg}}</mat-checkbox></p>
-	<p class = "rating">Rate this movie: <p-rating [(ngModel)]="val" stars="10"[cancel]="false" (onRate) = "saveRate(val)"></p-rating></p>
-</div>
+  <div class = "someFeatures">
+	 <p class = "checkbox">
+	   <mat-checkbox [(ngModel)]="checked" (change) = "validateFav($event.checked)">{{favMsg}}</mat-checkbox>
+	 </p>
+	 <p class = "rating">Rate this movie: 
+       <p-rating [(ngModel)]="val" stars="10"[cancel]="false" (onRate) = "saveRate(val)">
+       </p-rating>
+     </p>
+  </div>
 
-<div class = "container">
-	<img *ngIf ='movie.Poster != "N/A"; else noPoster'src="{{movie.Poster}}"> 
-	<ng-template #noPoster>
-                <img class="noImg" src='../../assets/images/no-image.png'/>
-    </ng-template>
-	<section class = "items">
-	
-		<p *ngIf ='movie.Year != "N/A" && movie.Year' class ="item"><span>Year: </span>{{movie.Year}}</p>
-	    <p *ngIf ='movie.Type != "N/A" && movie.Type' class ="item"><span>Type: </span> {{movie.Type}}</p>
-		<p *ngIf ='movie.Runtime != "N/A" && movie.Runtime' class ="item"><span>Runtime: </span> {{movie.Runtime}}</p>
-		<p *ngIf ='movie.Country != "N/A" && movie.Country' class ="item"><span>Country: </span> {{movie.Country}}</p>
-		<p *ngIf ='movie.Genre != "N/A" && movie.Genre' class ="item"><span>Genre: </span> {{movie.Genre}}</p>
-		<p *ngIf ='movie.Production != "N/A" && movie.Production' class ="item"><span>Production: </span> {{movie.Production}}</p>
-		<p *ngIf ='movie.Director != "N/A" && movie.Director' class ="item"><span>Director: </span> {{movie.Director}}</p>
-		<p *ngIf ='movie.Language != "N/A" && movie.Language' class ="item"><span>Language: </span> {{movie.Language}}</p>
-		<p *ngIf ='movie.Actors != "N/A" && movie.Actors' class ="item"><span>Actors: </span> {{movie.Actors}}</p>
-		<p *ngIf ='movie.Awards != "N/A" && movie.Awards'class ="item"><span>Awards: </span> {{movie.Awards}}</p>
-		<p *ngIf ='movie.Plot != "N/A" && movie.Plot' class ="item">{{movie.Plot}}</p>
-		<p *ngIf ='movie.imdbRating != "N/A" && movie.imdbRating' class ="item"><span>ImdbRating: </span> {{movie.imdbRating}} <img width= "15px" height = "15px" src="http://s1.iconbird.com/ico/2013/12/505/w450h4001385925286Star.png"></p>
-		
-		
-	</section>
-</div>
-<div class = "comment">
-	<span *ngIf = "showInput" class="ui-float-label">
-        <textarea id="float-input" [rows]="4" pInputTextarea autoResize="autoResize" #comment></textarea>
-        <label for="float-input">Leave your comment here...</label>
-        <!-- <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog> -->
-        <button class = "submitButton" (click) = "validateComment(comment.value)">Submit</button>
-    </span>
-    <p class = "replyForComment" *ngIf="msg">{{msg}}</p>
-</div>
+  <div class = "container">
+	 <img *ngIf ='movie.Poster != "N/A"; else noPoster'src="{{movie.Poster}}"> 
+	   <ng-template #noPoster>
+         <img class="noImg" src='../../assets/images/no-image.png'/>
+       </ng-template>
+	  
+	   <section class = "items">
+		  <p *ngIf ='movie.Year != "N/A" && movie.Year' class ="item">
+	         <span>Year: </span>{{movie.Year}}
+	      </p>
+	      <p *ngIf ='movie.Type != "N/A" && movie.Type' class ="item">
+	         <span>Type: </span> {{movie.Type}}
+	      </p>
+		  <p *ngIf ='movie.Runtime != "N/A" && movie.Runtime' class ="item">
+		     <span>Runtime: </span> {{movie.Runtime}}
+		  </p>
+		  <p *ngIf ='movie.Country != "N/A" && movie.Country' class ="item">
+		     <span>Country: </span> {{movie.Country}}
+		  </p>
+		  <p *ngIf ='movie.Genre != "N/A" && movie.Genre' class ="item">
+		     <span>Genre: </span> {{movie.Genre}}
+		  </p>
+		  <p *ngIf ='movie.Production != "N/A" && movie.Production' class ="item">
+		     <span>Production: </span> {{movie.Production}}
+		  </p>
+		  <p *ngIf ='movie.Director != "N/A" && movie.Director' class ="item">
+		     <span>Director: </span> {{movie.Director}}
+		  </p>
+		  <p *ngIf ='movie.Language != "N/A" && movie.Language' class ="item">
+		     <span>Language: </span> {{movie.Language}}
+		  </p>
+		  <p *ngIf ='movie.Actors != "N/A" && movie.Actors' class ="item">
+		     <span>Actors: </span> {{movie.Actors}}
+		  </p>
+		  <p *ngIf ='movie.Awards != "N/A" && movie.Awards'class ="item">
+		     <span>Awards: </span> {{movie.Awards}}
+		  </p>
+		  <p *ngIf ='movie.Plot != "N/A" && movie.Plot' class ="item">{{movie.Plot}}</p>
+		  <p *ngIf ='movie.imdbRating != "N/A" && movie.imdbRating' class ="item">
+		     <span>ImdbRating: </span> {{movie.imdbRating}} 
+		        <img width= "15px" height = "15px" src="http://s1.iconbird.com/ico/2013/12/505/w450h4001385925286Star.png">
+		  </p>		
+	   </section>
+ </div>
+ <div class = "comment">
+   <span *ngIf = "showInput" class="ui-float-label">
+        <textarea id="float-input" [rows]="4" pInputTextarea autoResize="autoResize" #commentRef></textarea>
+           <label for="float-input">Leave your comment here...</label>
+              <button class = "submitButton" (click) = "validateComment(commentRef.value)">Submit</button>
+   </span>
+   <p class = "replyForComment" *ngIf="msg">{{msg}}</p>
+ </div>
 
 

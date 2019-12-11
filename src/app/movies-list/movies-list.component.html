@@ -1,66 +1,67 @@
-<header class = "header">
 
-    <p><i class="fa fa-home"></i>  Welcome {{userName}}</p>
+<app-header></app-header>
 
-    <p-button label="Log out" (click)="logOut()"></p-button>
-
-</header>
 <h1 class = "heading">MovieLand</h1>
 
-<form [formGroup] = "searchControl" (submit)="submitting()" class = "searchField">
-    <label for ="sValue">
-    <input formControlName = "s" placeholder="  type a movie title here" class = "inputField" #sValue id = "sValue"></label>
-    <button class = "button" type="submit" (click) = "validate(sValue.value)"><i class="fa fa-search"></i>  Search</button>
-    <button mat-button class = "button"><label for = "openAdvanced">Advanced   </label><i class="fa fa-ellipsis-v"></i></button>
-    <div class = "advancedPanel">
-        <input type="checkbox" id="openAdvanced">
-        <div class = "block"> 
-    
-        <mat-form-field class = "advancedOption">
-        <mat-label>Type</mat-label>
-          
-        <mat-select [(value)]="type" (selectionChange) = "settingType($event)">
-        <mat-option *ngFor="let type of types" [value]="type.value">
-          {{type.viewValue}}
-        </mat-option>
-         </mat-select>
-        </mat-form-field>
+    <form [formGroup] = "searchControl" (submit)="submitting()" class = "searchField">
+        <label for ="sValue">
+           <input formControlName = "s" placeholder="  type a movie title here" class = "inputField" #sValue id = "sValue">
+        </label>
+        <button class = "button" type="submit" (click) = "validate(sValue.value)">
+            <i class="fa fa-search"></i>  Search
+        </button>
+        <button mat-button class = "button">
+            <label for = "openAdvanced">Advanced   </label>
+              <i class="fa fa-ellipsis-v"></i>
+        </button>
+        <div class = "advancedPanel">
+            <input type="checkbox" id="openAdvanced">
+              <div class = "block"> 
+                <mat-form-field class = "advancedOption">
+                  <mat-label>Type</mat-label>
+                    <mat-select [(value)]="type" (selectionChange) = "settingType($event)">
+                      <mat-option *ngFor="let type of types" [value]="type.value">
+                        {{type.viewValue}}
+                      </mat-option>
+                    </mat-select>
+                </mat-form-field>  
 
-
-
-        <mat-form-field class = "advancedOption">
-        <input type="text" placeholder="Select a year" aria-label="Number" matInput [formControl]="y" [matAutocomplete]="auto">
-         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="settingYear($event)">
-        <mat-option *ngFor="let year of filteredYears | async" [value]="year" >
-        {{ year }}
-        </mat-option>
-        </mat-autocomplete>
-        </mat-form-field>
-
-        </div>
+                <mat-form-field class = "advancedOption">
+                  <input type="text" placeholder="Select a year" aria-label="Number" matInput [formControl]="y" [matAutocomplete]="auto">
+                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="settingYear($event)">
+                      <mat-option *ngFor="let year of filteredYears | async" [value]="year" >
+                        {{ year }}
+                      </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field>
+              </div>
         </div> 
-</form>
-<div class = "matSpinner"><mat-spinner *ngIf = "showSpinner" diameter = "30"></mat-spinner></div>
-<ul *ngIf="movies.length" class="moviesList">
-        <li *ngFor="let movie of movies" class = "container" (click) = "navigateToDetails(movie)">
-            
-            <div>
-            <p class = "resultDetails"><span>{{movie.Title}}</span><br>
+    </form>
+
+    <div class = "matSpinner">
+      <mat-spinner *ngIf = "showSpinner" diameter = "30"></mat-spinner>
+    </div>
+    <ul *ngIf="movies.length" class="moviesList">
+      <li *ngFor="let movie of movies" class = "container" (click) = "navigateToDetails(movie)">
+        <div>
+          <p class = "resultDetails">
+            <span>{{movie.Title}}</span><br>
             <span>{{movie.Type}}</span><br>
-            <span>{{movie.Year}}</span></p>
+            <span>{{movie.Year}}</span>
+          </p>
             <img *ngIf ='movie.Poster != "N/A"; else noPoster' src="{{movie.Poster}}" class = "poster" />
-            <ng-template #noPoster>
-                <img class="poster" src='assets/images/no-image.png' />
-            </ng-template>
-            </div>
-       
-    </li>
+              <ng-template #noPoster>
+                <img class="poster" src='assets/images/no-image.png'/>
+              </ng-template>
+        </div>
+       </li>
     <mat-paginator [length]=totalResults 
-              [pageSize]=movies.length
-              [hidePageSize]=true
-              (page)="doPaginate($event)">
+                   [pageSize]=movies.length
+                   [hidePageSize]=true
+                   (page)="doPaginate($event)">
     </mat-paginator>
-</ul>
+    </ul>
+    
 <!-- <div class = "errorsButtons">
 <button type="button" pButton (click)="makeError('404')" label="Error 404" class="ui-button-danger"></button>
 <button type="button" pButton (click)="makeError('503')" label="Error 503" class="ui-button-danger"></button>

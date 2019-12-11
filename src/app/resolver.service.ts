@@ -14,18 +14,10 @@ export class ResolverService implements Resolve<string>{
   Observable<string> | Promise<string> | string {
       const str: string = "Hello, MovieLand";
 
-      // return str;
-
-      // const observable: Observable<string> = Observable.create(observer => {
-      // 	observer.next(str);
-      // 	observer.complete();
-      // });
-
       const promise: Promise<string> = new Promise(function(resolve, reject) {
       	resolve(str);
       })
-
-      return promise;
+        return promise;
     }
 }
 

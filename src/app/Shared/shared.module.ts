@@ -3,9 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
 import { HttpService } from './services/http.service';
 import { Myinterceptor } from '../interceptors/Myinterceptor.service';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
 @NgModule({
@@ -24,19 +25,17 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
   declarations: [],
   providers: [
     HttpService,
-    {
-    provide: HTTP_INTERCEPTORS,
-    useClass: Myinterceptor,
-    multi: true
-  }
+    {   provide: HTTP_INTERCEPTORS,
+        useClass: Myinterceptor,
+        multi: true
+    }
   ],
   exports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    HttpClientModule,
-    
+    HttpClientModule  
   ]
 })
 export class SharedModule { }

@@ -1,26 +1,23 @@
 <h1 class = "heading">Welcome to the MovieLand</h1>
 <div class = "loginControl">
-<form [formGroup] = "loginControl" (submit)="submitForm()">
-	
-	<p *ngIf="wrongCredentials" class = "wrongCredentials"><i class="fa fa-exclamation-triangle"></i>  Wrong credentials</p>
-
-	<section>
-	<span class="ui-float-label">
-	<input id="float-input" type="text" size="30" pInputText formControlName = "email" class="emailForm">
-	<label for="float-input">Email</label>
-	</span>
-	</section>
-
-	<section>
-	<span class="ui-float-label">
-	<input id="float-pswd" type="password" pPassword formControlName = "pswd" class="pswdForm"/>
-	<label for="float-pswd">Password</label>
-	</span>
-	</section>
-	
-	<section class= "loginButton">
-	<p-button label="Login" type="submit"></p-button>
-	</section>
-
-</form>
+	<form [formGroup] = "loginControl" (submit)="submitForm()">
+		<p *ngIf="wrongCredentials" class="wrongCredentials">
+			<i class="fa fa-exclamation-triangle"></i>Wrong credentials
+		</p>
+		<section>
+			<span class="ui-float-label">
+				<input id="float-input" type="text" size="30" pInputText formControlName = "email" class="emailForm" #emailRef>
+				<label for="float-input">Email</label>
+			</span>
+		</section>
+		<section>
+			<span class="ui-float-label">
+				<input id="float-pswd" type="password" pPassword formControlName = "pswd" class="pswdForm" #pswdRef>
+				<label for="float-pswd">Password</label>
+			</span>
+		</section>
+		<section class= "loginButton">
+			<p-button label="Login" type="submit" [disabled]="loginControl.invalid"></p-button>
+		</section>
+	</form>
 </div>

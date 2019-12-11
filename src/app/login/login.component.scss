@@ -12,7 +12,6 @@
 	padding: 20px;
 	height: 183px;
 }
-
 .wrongCredentials {
     color: red;
     margin-top: 0;
@@ -22,8 +21,17 @@
 .ui-float-label {  /* for "email" and "password labels */
 	display: inline;
 	margin-right: auto;
-	margin-left: auto; 
+	margin-left: auto;
 }
+.ui-inputtext:focus {
+	transform: translateY(6px);
+}
+.ng-dirty.ng-touched.ui-inputtext {
+	transform: translateY(6px);
+}
+/*input #float-input.emailForm.ng-pristine.ng-invalid.ui-inputtext.ui-corner-all.ui-state-default.ui-widget.ng-touched {
+	transform: translateY(15px);
+}*/
 .pswdForm {
 	margin-right: auto;
 	margin-left: auto;
@@ -47,6 +55,6 @@
     color: white;
     margin-top: 82px;
     font-size: 3em;
-    text-shadow: #545454 0 0 15px; // 
+    text-shadow: #545454 0 0 15px; 
 }
 

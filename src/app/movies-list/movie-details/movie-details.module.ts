@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule, Routes} from '@angular/router';
 
 import { MovieDetailsComponent } from './movie-details.component';
 import { ResolverService } from '../../resolver.service';
-import { RouterModule, Routes} from '@angular/router';
 import { SharedMaterialModule } from '../../Shared/shared-material.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 const ROUTES: Routes = [
   {

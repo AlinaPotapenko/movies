@@ -1,11 +1,13 @@
-import { MoviesListComponent } from './movies-list.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { HeaderComponent } from './header/header.component';
+import { MoviesListComponent } from './movies-list.component';
 import { SharedModule } from '../Shared/shared.module';
 import { ResolverService } from '../resolver.service';
 import { SharedMaterialModule } from '../Shared/shared-material.module';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 const ROUTES: Routes = [
   {
@@ -18,10 +20,10 @@ const ROUTES: Routes = [
   }
 ];
 
-
 @NgModule({
   declarations: [
     MoviesListComponent,
+    HeaderComponent,
   ],
   imports: [
     SharedModule,

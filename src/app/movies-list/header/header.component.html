@@ -2,5 +2,7 @@
     <p>
        <i class="fa fa-home"></i>  Welcome {{userName}}
     </p>
-    <p-button label="Log out" (click)="logOut()"></p-button>
+    <p-menu #menu [popup]="true" [model]="items" (click)="navigateThroughMenu($event)"></p-menu>
+    <button type="button" pButton icon="pi pi-bars" label="Menu" 
+    (click)="menu.toggle($event)" class="menuButton"></button>
 </header>

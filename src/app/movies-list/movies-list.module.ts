@@ -11,13 +11,23 @@ import { SharedMaterialModule } from '../Shared/shared-material.module';
 
 const ROUTES: Routes = [
   {
-    path: '',
-    component: MoviesListComponent,
+    path: "",
+    component: MoviesListComponent
   },
   {
-    path: 'details/:imdbID',
-    loadChildren: () => import('./movie-details/movie-details.module').then(m => m.MovieDetailsModule),
+    path: "details/:imdbID",
+    loadChildren: () =>
+      import("./movie-details/movie-details.module").then(
+        m => m.MovieDetailsModule
+      )
   }
+  // {
+  //   path: "myprofile",
+  //   loadChildren: () =>
+  //     import("../user-profile-page/user-profile-page.module").then(
+  //       m => m.UserProfilePageModule
+  //     )
+  // }
 ];
 
 @NgModule({

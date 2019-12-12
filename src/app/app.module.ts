@@ -7,25 +7,38 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { UserProfilePageComponent } from './user-profile-page/user-profile-page.component';
 
 const APP_ROUTING: Routes = [
   {
-    path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
+    path: "",
+    redirectTo: "login",
+    pathMatch: "full"
   },
   {
-    path: 'login',
-    loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
+    path: "login",
+    loadChildren: () => import("./login/login.module").then(m => m.LoginModule)
   },
   {
-    path: 'movies',
+    path: "profile/:name",
     canActivate: [AuthGuard],
-    loadChildren: () => import('./movies-list/movies-list.module').then(m => m.MoviesListModule)
+    loadChildren: () =>
+      import("./user-profile-page/user-profile-page.module").then(
+        m => m.UserProfilePageModule
+      )
   },
   {
-    path: '**',
-    loadChildren: () => import('./page-not-found/page-not-found.module').then(m => m.PageNotFoundModule)
+    path: "movies",
+    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import("./movies-list/movies-list.module").then(m => m.MoviesListModule)
+  },
+  {
+    path: "**",
+    loadChildren: () =>
+      import("./page-not-found/page-not-found.module").then(
+        m => m.PageNotFoundModule
+      )
   }
 ];
 

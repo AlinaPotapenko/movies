@@ -23,6 +23,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
+import { MenuModule } from "primeng/menu";
 
 @NgModule({
   declarations: [],
@@ -42,6 +43,7 @@ import { PasswordModule } from 'primeng/password';
     ToastModule,
     InputTextModule,
     PasswordModule,
+    MenuModule,
     ReactiveFormsModule
   ],
   exports: [
@@ -57,11 +59,9 @@ import { PasswordModule } from 'primeng/password';
     ToastModule,
     InputTextModule,
     PasswordModule,
+    MenuModule,
     MatInputModule
   ],
-  providers: [
-    ConfirmationService,
-    MessageService
-  ]
+  providers: [ConfirmationService, MessageService]
 })
-export class SharedMaterialModule { }
+export class SharedMaterialModule {}

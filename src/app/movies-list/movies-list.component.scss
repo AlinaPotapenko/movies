@@ -87,7 +87,7 @@ mat-paginator {
     height: 22px;
     font-family: Constantia;
 }
-button:hover {
+.button:hover, button label:hover {
     cursor: pointer;
 }
 .poster {

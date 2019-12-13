@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { MenuItem } from "primeng/api";
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: "app-header",
@@ -12,7 +13,7 @@ export class HeaderComponent implements OnInit {
   public userName: string;
   items: MenuItem[];
 
-  constructor(private _router: Router) {}
+  constructor(private confirmationService: ConfirmationService, private _router: Router) {}
 
   ngOnInit() {
     this.userName = JSON.parse(localStorage.getItem("info")).name;
@@ -26,10 +27,22 @@ export class HeaderComponent implements OnInit {
   navigateThroughMenu(item) {
     console.log(item)
     if (item.toElement.innerText == 'Logout') {
-        this._router.navigate(['login']).then();
-        localStorage.clear();
+        (this.confirm());
     } else if (item.toElement.innerText == 'My profile') {
         this._router.navigate([`profile/${this.userName}`]).then();
     }
+  }
+
+  confirm() {
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to log out?',
+      accept: () => {
+        this._router.navigate(['login']).then();
+        localStorage.clear();
+      },
+      reject: () => {
+        return;
+      }
+    });
   }
 }

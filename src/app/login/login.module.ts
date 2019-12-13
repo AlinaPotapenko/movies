@@ -11,6 +11,13 @@ const ROUTES: Routes = [
   {
     path: "",
     component: LoginComponent
+  },
+  {
+    path: "registration",
+    loadChildren: () =>
+      import("./registration-form/registration-form.module").then(
+        m => m.RegistrationFormModule
+      )
   }
 ];
 

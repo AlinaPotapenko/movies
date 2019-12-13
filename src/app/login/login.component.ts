@@ -31,7 +31,8 @@ export class LoginComponent implements OnInit {
 
  submitForm() {
   	// (this.validateForm());
-  	let value = this.loginControl.value;
+    let value = this.loginControl.value;
+    // let email = JSON.parse(localStorage.getItem('info'));
   	  if (value.email == 'alina@gmail.com' && value.pswd == '123') {
   		(this.navigateToMovies());
   		  let config = {
@@ -48,6 +49,10 @@ export class LoginComponent implements OnInit {
  navigateToMovies() {
   	this._router.navigate(['movies']).then();
  }
+
+  navigateToRegistration() {
+    this._router.navigate(['login/registration']).then();
+  }
 
   // validateForm() {
   // 	let value = this.loginControl.value;

@@ -1,0 +1,22 @@
+<h1 class="heading">Welcome to the MovieLand</h1>
+<div class ="registrationForm">
+    <form [formGroup]="registrationControl" (submit) = "submitForm($event)">
+        <span class="ui-float-label">
+            <input id="float-name" type="text" size="30" pInputText formControlName="name">
+            <label for="float-name">Name</label>
+        </span>
+        <span class="ui-float-label">
+            <input id="float-surname" type="text" size="30" pInputText formControlName="surname">
+            <label for="float-surname">Surname</label>
+        </span>
+        <span class="ui-float-label">
+            <input id="float-email" type="text" size="30" pInputText formControlName="email" class="emailForm" #emailRef>
+            <label for="float-email">Email</label>
+        </span>
+        <span class="ui-float-label">
+            <input id="float-pswd" type="password" size="30" pPassword formControlName="pswd" class="pswdForm" #pswdRef>
+            <label for="float-pswd">Password</label>
+        </span>
+        <p-button label="Create an Account" type="submit"></p-button>
+    </form>
+</div>

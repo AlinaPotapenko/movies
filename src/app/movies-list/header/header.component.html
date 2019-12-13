@@ -3,6 +3,7 @@
        <i class="fa fa-home"></i>  Welcome {{userName}}
     </p>
     <p-menu #menu [popup]="true" [model]="items" (click)="navigateThroughMenu($event)"></p-menu>
-    <button type="button" pButton icon="pi pi-bars" label="Menu" 
-    (click)="menu.toggle($event)" class="menuButton"></button>
+       <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+          <button type="button" pButton icon="pi pi-bars" label="Menu" 
+             (click)="menu.toggle($event)" class="menuButton"></button>
 </header>

@@ -1,0 +1,42 @@
+.heading {
+	text-align: center;
+    font-family: Constantia;
+    color: white;
+    margin-top: 82px;
+    font-size: 3em;
+    text-shadow: #545454 0 0 15px; 
+}
+.registrationForm {
+    display: flex;
+	box-sizing: border-box;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+	margin-top: 8%;
+	background-color: #edebeb;
+	border: 2px solid #636262;
+	width: 300px;;
+	border-radius: 7px;
+	padding: 20px;
+	height: 270px;
+}
+.ui-float-label {  /* for "email" and "password labels */
+	display: inline;
+	margin-right: auto;
+	margin-left: auto;
+}
+.ui-inputtext:focus {
+	transform: translateY(6px);
+}
+.ng-dirty.ng-touched.ui-inputtext {
+	transform: translateY(6px);
+}
+:host ::ng-deepinput {
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+:host ::ng-deep.ui-button, :host ::ng-deep.ui-button:enabled:hover {
+    margin-top: 10px;
+ 	background-color: #e4018d;
+ 	border: 1px solid white;
+}

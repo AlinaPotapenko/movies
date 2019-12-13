@@ -10,7 +10,7 @@
 	width: 20%;
 	border-radius: 7px;
 	padding: 20px;
-	height: 183px;
+	height: 205px;
 }
 .wrongCredentials {
     color: red;
@@ -42,8 +42,14 @@
 	margin-top: 5px;
 	width: 80%;
 }
+section p {
+	cursor: pointer;
+	margin-top: 5px;
+	color: #636262;
+	font-size: 0.9em;
+}
 .loginButton {
-	margin-top: 15px;
+	margin-top: 12px;
 }
 :host ::ng-deep.ui-button, :host ::ng-deep.ui-button:enabled:hover {
  	background-color: #e4018d;

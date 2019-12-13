@@ -10,17 +10,23 @@ import { LoginComponent } from '../../login/login.component';
   providedIn: 'root'
 })
 export class AuthService {
-
+  allUsers = {};
   constructor(private _router: Router) { }
 
-  isAuth() {
-  	let userInfo = JSON.parse(localStorage.getItem('info'));
-  	if(userInfo) {
-  		return true;
-  	} else {
-  		this._router.navigate(['login']).then();
-  	    return false;
+  passInfo(id, userInfo) {
+	return this.allUsers[id] = userInfo;
   }
+
+  isAuth() {
+	//   let userInfo = JSON.parse(localStorage.getItem(`${id}`));
+	  let users = Object.keys(localStorage).map(k => localStorage.getItem(k));
+	  console.log(this.allUsers);
+//   	if(userInfo) {
+//   		return true;
+//   	} else {
+//   		this._router.navigate(['login']).then();
+//   	    return false;
+//   }
  }
 
 }

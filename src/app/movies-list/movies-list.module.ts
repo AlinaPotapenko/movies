@@ -21,13 +21,6 @@ const ROUTES: Routes = [
         m => m.MovieDetailsModule
       )
   }
-  // {
-  //   path: "myprofile",
-  //   loadChildren: () =>
-  //     import("../user-profile-page/user-profile-page.module").then(
-  //       m => m.UserProfilePageModule
-  //     )
-  // }
 ];
 
 @NgModule({

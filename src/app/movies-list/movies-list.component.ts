@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { map, startWith, finalize } from 'rxjs/operators';
 
 import { HttpService } from '../Shared/services/http.service';
+import { AuthService } from '../shared/services/auth.service';
 
 // import {MessageService} from 'primeng/api';
 
@@ -46,7 +47,7 @@ export class MoviesListComponent implements OnInit{
   filteredYears: Observable<number[]>;
   
   constructor(private _httpService: HttpService, private _router: Router, //private messageService: MessageService should be added for error buttons
-              private _renderer: Renderer2) {
+              private _renderer: Renderer2, private _authService: AuthService) {
     
         this.searchControl = new FormGroup({
         s: new FormControl(),
@@ -58,7 +59,7 @@ export class MoviesListComponent implements OnInit{
   }
 
   ngOnInit() {
-
+    
     this.searchControl.valueChanges
       .subscribe((value) => {
         let movieTitle: string = value.s;

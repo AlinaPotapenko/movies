@@ -28,8 +28,7 @@ export class RegistrationFormComponent implements OnInit {
   submitForm(form) {
     let id = Math.round(Math.random()*100000000);
     let newUser = this.registrationControl.value;
-    localStorage.setItem(`${id}`, JSON.stringify(newUser));
-    this._authService.passInfo(id, newUser);
+    localStorage.setItem('info', JSON.stringify(newUser));
     this._router.navigate(['movies']).then();
     // console.log(this.userId)
   }

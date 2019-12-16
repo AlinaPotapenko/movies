@@ -2,21 +2,21 @@
 <div class ="registrationForm">
     <form [formGroup]="registrationControl" (submit) = "submitForm($event)">
         <span class="ui-float-label">
-            <input id="float-name" type="text" size="30" pInputText formControlName="name">
+            <input id="float-name" type="text" size="30" pInputText formControlName="name" #inputRef>
             <label for="float-name">Name</label>
         </span>
         <span class="ui-float-label">
-            <input id="float-surname" type="text" size="30" pInputText formControlName="surname">
+            <input id="float-surname" type="text" size="30" pInputText formControlName="surname" #inputRef>
             <label for="float-surname">Surname</label>
         </span>
         <span class="ui-float-label">
-            <input id="float-email" type="text" size="30" pInputText formControlName="email" class="emailForm" #emailRef>
+            <input id="float-email" type="text" size="30" pInputText formControlName="email" class="emailForm" #inputRef>
             <label for="float-email">Email</label>
         </span>
         <span class="ui-float-label">
-            <input id="float-pswd" type="password" size="30" pPassword formControlName="pswd" class="pswdForm" #pswdRef>
+            <input id="float-pswd" type="password" size="30" pPassword formControlName="pswd" class="pswdForm" #inputRef>
             <label for="float-pswd">Password</label>
         </span>
-        <p-button label="Create an Account" type="submit"></p-button>
+        <p-button label="Create an Account" type="submit" [disabled]="registrationControl.invalid"></p-button>
     </form>
 </div>

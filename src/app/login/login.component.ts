@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/co
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { AuthService } from '../shared/services/auth.service';
+import { AuthService } from '../Shared/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -30,20 +30,27 @@ export class LoginComponent implements OnInit {
  ngOnInit() { }
 
  submitForm() {
+   
   	// (this.validateForm());
     let value = this.loginControl.value;
+   if (this.loginControl.valid) {
+    this._authService.passLoginInfo(value.email, value.pswd);
+   } else {
+     this.loginControl.markAllAsTouched();
+   }
+    // (this.navigateToMovies())
     // let email = JSON.parse(localStorage.getItem('info'));
-  	  if (value.email == 'alina@gmail.com' && value.pswd == '123') {
-  		(this.navigateToMovies());
-  		  let config = {
-  			 name: 'Alina',
-  			 company: 'Synergetica',
-  			 access: true
-  		  }
-  		localStorage.setItem('info', JSON.stringify(config));
-    } else if (typeof(value.email) == 'string' && typeof(value.pswd) == 'string') {
-    	this.wrongCredentials = true;
-    }
+  	 //  if (value.email == 'alina@gmail.com' && value.pswd == '123') {
+  		// (this.navigateToMovies());
+  		//   let config = {
+  		// 	 name: 'Alina',
+  		// 	 company: 'Synergetica',
+  		// 	 access: true
+  		//   }
+  		// localStorage.setItem('info', JSON.stringify(config));
+    // } else if (typeof(value.email) == 'string' && typeof(value.pswd) == 'string') {
+    // 	this.wrongCredentials = true;
+    // }
  }
 
  navigateToMovies() {

@@ -1,12 +1,11 @@
-import { Component, OnInit, Inject, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, ElementRef, Renderer2, ViewChild, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, startWith, finalize } from 'rxjs/operators';
 
 import { HttpService } from '../Shared/services/http.service';
-import { AuthService } from '../shared/services/auth.service';
-
+import { AuthService } from '../Shared/services/auth.service';
 // import {MessageService} from 'primeng/api';
 
 export interface Ttype {
@@ -21,19 +20,21 @@ export interface Ttype {
 })
 
 
-export class MoviesListComponent implements OnInit{
+export class MoviesListComponent implements OnInit, OnDestroy{
 
   @ViewChild('sValue', {static: false}) sValue: ElementRef;
 
   searchControl: FormGroup; 
   movies: any[] = [];
-  
   totalResults: number;
   date = new Date();
   currentYear = this.date.getFullYear(); 
   typeParam: String = '';
   yearParam = '';
   showSpinner = false;
+  public id;
+  public userInfo;
+  valueChanges;
 
 
   types: Ttype[] = [
@@ -46,7 +47,7 @@ export class MoviesListComponent implements OnInit{
   years: number[] = [];
   filteredYears: Observable<number[]>;
   
-  constructor(private _httpService: HttpService, private _router: Router, //private messageService: MessageService should be added for error buttons
+  constructor(private _route: ActivatedRoute, private _httpService: HttpService, private _router: Router, //private messageService: MessageService should be added for error buttons
               private _renderer: Renderer2, private _authService: AuthService) {
     
         this.searchControl = new FormGroup({
@@ -59,8 +60,8 @@ export class MoviesListComponent implements OnInit{
   }
 
   ngOnInit() {
-    
-    this.searchControl.valueChanges
+
+    this.valueChanges = this.searchControl.valueChanges
       .subscribe((value) => {
         let movieTitle: string = value.s;
         if (movieTitle === '') {
@@ -72,6 +73,10 @@ export class MoviesListComponent implements OnInit{
       .pipe(
         startWith(''),
           map(value => this._filter(value)));
+  }
+
+  ngOnDestroy() {
+    this.valueChanges.unsubscribe();
   }
   
   private _filter(value) {
@@ -131,12 +136,6 @@ export class MoviesListComponent implements OnInit{
   navigateToDetails(movie) {
     this._router.navigate([`movies/details/${movie.imdbID}`]).then();
   }
-
-  // makeError(errorCode) {
-  //   let error = {};
-  //   this._httpService.getError(errorCode)
-  //     .subscribe(() => {});
-  // }
 
 }
 

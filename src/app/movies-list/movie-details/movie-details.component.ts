@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { HttpService } from 'src/app/Shared/services/http.service';
+import { HttpService } from 'src/app/Shared/services/';
 
 @Component({
   selector: 'app-movie-details',

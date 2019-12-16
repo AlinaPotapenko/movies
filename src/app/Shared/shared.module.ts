@@ -7,6 +7,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { HttpService } from './services/http.service';
 import { Myinterceptor } from '../interceptors/Myinterceptor.service';
+import { LimitationPipe } from './pipes/limitation.component';
 
 
 @NgModule({
@@ -18,11 +19,9 @@ import { Myinterceptor } from '../interceptors/Myinterceptor.service';
     // Http
     HttpClientModule,
     // Router
-    RouterModule,
-
-
+    RouterModule
   ],
-  declarations: [],
+  declarations: [ LimitationPipe ],
   providers: [
     HttpService,
     {   provide: HTTP_INTERCEPTORS,
@@ -35,7 +34,8 @@ import { Myinterceptor } from '../interceptors/Myinterceptor.service';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    HttpClientModule  
+    HttpClientModule,
+    LimitationPipe
   ]
 })
 export class SharedModule { }

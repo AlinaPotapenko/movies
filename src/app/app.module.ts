@@ -20,7 +20,7 @@ const APP_ROUTING: Routes = [
     loadChildren: () => import("./login/login.module").then(m => m.LoginModule)
   },
   {
-    path: "profile/:name",
+    path: "profile",
     canActivate: [AuthGuard],
     loadChildren: () =>
       import("./user-profile-page/user-profile-page.module").then(

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { MenuItem } from "primeng/api";
 import { ConfirmationService } from 'primeng/api';
+
+import { AuthService } from '../../Shared/services/auth.service';
 
 @Component({
   selector: "app-header",
@@ -10,13 +12,14 @@ import { ConfirmationService } from 'primeng/api';
   styleUrls: ["./header.component.scss"]
 })
 export class HeaderComponent implements OnInit {
-  public userName: string;
   items: MenuItem[];
+  userInfo;
 
-  constructor(private confirmationService: ConfirmationService, private _router: Router) {}
+  constructor(private confirmationService: ConfirmationService, private _router: Router,
+              private _authService: AuthService) {
+  }
 
   ngOnInit() {
-    this.userName = JSON.parse(localStorage.getItem("info")).name;
 
     this.items = [
       { label: 'My profile', icon: 'fa fa-home' },
@@ -25,11 +28,10 @@ export class HeaderComponent implements OnInit {
   }
 
   navigateThroughMenu(item) {
-    console.log(item)
     if (item.toElement.innerText == 'Logout') {
         (this.confirm());
     } else if (item.toElement.innerText == 'My profile') {
-        this._router.navigate([`profile/${this.userName}`]).then();
+        this._router.navigate(['profile']).then();
     }
   }
 

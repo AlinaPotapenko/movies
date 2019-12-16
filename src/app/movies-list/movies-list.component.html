@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <h1 class = "heading">MovieLand</h1>
-
+    <!-- <div class="{{0 | limitationPipe:true:5}}">{{0 | limitationPipe}}</div> -->
     <form [formGroup] = "searchControl" (submit)="submitting()" class = "searchField">
         <label for ="sValue">
            <input formControlName = "s" placeholder="  type a movie title here" class = "inputField" #sValue id = "sValue">
@@ -20,7 +20,7 @@
                   <mat-label>Type</mat-label>
                     <mat-select [(value)]="type" (selectionChange) = "settingType($event)">
                       <mat-option *ngFor="let type of types" [value]="type.value">
-                        {{type.viewValue}}
+                        {{type.viewValue }}
                       </mat-option>
                     </mat-select>
                 </mat-form-field>  

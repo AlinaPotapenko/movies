@@ -6,7 +6,7 @@
 		</p>
 		<section>
 			<span class="ui-float-label">
-				<input id="float-input" type="text" pInputText formControlName = "email" class="emailForm" #emailRef>
+				<input id="float-input" type="text" size="30" pInputText formControlName = "email" class="emailForm" #emailRef>
 				<label for="float-input">Email</label>
 			</span>
 		</section>
@@ -20,7 +20,7 @@
 			<p (click) = "navigateToRegistration()">Create an account</p>
 		</section>
 		<section class= "loginButton">
-			<p-button label="Login" type="submit" [disabled]="loginControl.invalid"></p-button>
+			<p-button label="Login" type="submit"></p-button>
 		</section>
 	</form>
 </div>

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { Router, NavigationExtras } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
@@ -15,15 +15,20 @@ export class AuthService {
   currentPswd: string;
   currentEmail: string;
   currentId: string;
-
+  private broadcastMessage = new BehaviorSubject<string>('Alina');
+  broadcast = this.broadcastMessage.asObservable();
   constructor(private _router: Router) { }
+
+  updateMessage(newMessage: string) {
+    this.broadcastMessage.next(newMessage);
+  }
 
   passRegistrationInfo(id, user) {
     this.userInfo = user;
     this.currentEmail = user.email;
     this.currentPswd = user.pswd;
     this.currentId = id;
-     (this.navigateToMovies());
+    (this.navigateToMovies());
   }
 
   passLoginInfo(email, pswd) {
@@ -34,17 +39,19 @@ export class AuthService {
   }
 
   isAuth() {
-	  // let users = Object.keys(localStorage).map(k => localStorage.getItem(k));
     for (let key of Object.keys(localStorage)) {
-      let user = JSON.parse(localStorage.getItem(`${key}`));
-        if (this.currentEmail == user.email && 
-            this.currentPswd == user.pswd) {
-              this.userInfo = user;
+      if (key) {
+        return true;
+      } return false;
+
+      // let user = JSON.parse(localStorage.getItem(`${key}`));
+      //   if (this.currentEmail == user.email && 
+      //       this.currentPswd == user.pswd) {
+      //         this.userInfo = user;
               // this.userInfo.access = true;
               // return this.userInfo.access;
         } 
     } 
-  };
 
  navigateToMovies() {
     // let navigationExtras: NavigationExtras = {

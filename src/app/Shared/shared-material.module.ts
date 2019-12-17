@@ -24,9 +24,10 @@ import { MessageService } from 'primeng/api';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { MenuModule } from "primeng/menu";
+import { HeaderComponent } from '../movies-list/header/header.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [ HeaderComponent ],
   imports: [
     CommonModule,
     MatPaginatorModule,
@@ -60,7 +61,8 @@ import { MenuModule } from "primeng/menu";
     InputTextModule,
     PasswordModule,
     MenuModule,
-    MatInputModule
+    MatInputModule,
+    HeaderComponent
   ],
   providers: [ConfirmationService, MessageService]
 })

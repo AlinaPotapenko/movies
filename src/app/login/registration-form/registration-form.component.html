@@ -1,6 +1,6 @@
 <h1 class="heading">Welcome to the MovieLand</h1>
 <div class ="registrationForm">
-    <form [formGroup]="registrationControl" (submit) = "submitForm($event)">
+    <form [formGroup]="registrationForm" (submit) = "submitForm($event)">
         <span class="ui-float-label">
             <input id="float-name" type="text" size="30" pInputText formControlName="name" #inputRef>
             <label for="float-name">Name</label>
@@ -17,6 +17,6 @@
             <input id="float-pswd" type="password" size="30" pPassword formControlName="pswd" class="pswdForm" #inputRef>
             <label for="float-pswd">Password</label>
         </span>
-        <p-button label="Create an Account" type="submit" [disabled]="registrationControl.invalid"></p-button>
+        <p-button label="Create an Account" type="submit"></p-button>
     </form>
 </div>

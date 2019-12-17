@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../Shared/services';
 
 @Component({
   selector: "app-user-profile-page",
@@ -7,12 +8,13 @@ import { Router } from '@angular/router';
   styleUrls: ["./user-profile-page.component.scss"]
 })
 export class UserProfilePageComponent implements OnInit {
-  public userName: string;
+  userName: string;
 
-  constructor(private _router: Router) {}
+  constructor(private _router: Router, private _authService: AuthService) {}
 
   ngOnInit() {
-    this.userName = JSON.parse(localStorage.getItem('info')).name;
+    this._authService.broadcast.subscribe(msg => this. userName = msg);
+
   }
 
   navigateToMovies() {

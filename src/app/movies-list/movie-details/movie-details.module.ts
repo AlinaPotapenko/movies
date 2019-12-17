@@ -6,6 +6,7 @@ import { RouterModule, Routes} from '@angular/router';
 import { MovieDetailsComponent } from './movie-details.component';
 import { ResolverService } from '../../resolver.service';
 import { SharedMaterialModule } from '../../Shared/shared-material.module';
+import { SharedModule } from 'src/app/Shared/shared.module';
 
 
 const ROUTES: Routes = [
@@ -18,14 +19,15 @@ const ROUTES: Routes = [
 
  @NgModule({
   declarations: [
-    MovieDetailsComponent,
+    MovieDetailsComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(ROUTES),
     SharedMaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   providers: [
     ResolverService,

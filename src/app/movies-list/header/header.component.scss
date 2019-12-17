@@ -18,18 +18,18 @@
 .menuButton {
     margin-right: 30px;
 }
-// div .ng-trigger.ng-trigger-overlayAnimation .ng-tns-c10-3 .ui-menu
-// .ui-widget .ui-widget-content .ui-corner-all .ui-menu-dynamic {
-//     width: 25px;
-// }
 :host ::ng-deepspan.ui-menuitem-icon.pi.pi-sign-out.ng-star-inserted{
     margin-right: 2px;
 }
 :host ::ng-deepspan.ui-button-text {
-    transform: translateY(-1px);
+    transform: translateY(-2px);
 }
 :host ::ng-deepdiv.ui-menu-dynamic {
     width: 140px;
+}
+:host ::ng-deep.ui-button, :host ::ng-deep.ui-button:enabled:hover {
+ 	background-color: #e4018d;
+ 	border: 1px solid #e4018d;
 }
 
 

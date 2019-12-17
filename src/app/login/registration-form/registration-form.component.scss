@@ -40,3 +40,8 @@
  	background-color: #e4018d;
  	border: 1px solid white;
 }
+input.ng-invalid {
+	&.ng-touched {
+		border: 1px solid red;
+	}
+}

@@ -1,6 +1,6 @@
 <h1 class = "heading">Welcome to the MovieLand</h1>
 <div class = "loginControl">
-	<form [formGroup] = "loginControl" (submit)="submitForm()">
+	<form [formGroup] = "loginForm" (submit)="submitForm()">
 		<p *ngIf="wrongCredentials" class="wrongCredentials">
 			<i class="fa fa-exclamation-triangle"></i>Wrong credentials
 		</p>

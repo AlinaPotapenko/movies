@@ -15,13 +15,13 @@ export class LoginComponent implements OnInit {
  @ViewChild('emailRef', {static: false}) emailRef: ElementRef;
  @ViewChild('pswdRef', {static: false}) pswdRef: ElementRef;
  
- loginControl: FormGroup;
+ loginForm: FormGroup;
  wrongCredentials: Boolean = false;
  public canActivate: Boolean = false;
 
 
  constructor(private _router: Router, private _authService: AuthService, private _renderer: Renderer2) {
-  	this.loginControl = new FormGroup({
+  	this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       pswd: new FormControl('', [Validators.required])
     });
@@ -32,11 +32,11 @@ export class LoginComponent implements OnInit {
  submitForm() {
    
   	// (this.validateForm());
-    let value = this.loginControl.value;
-   if (this.loginControl.valid) {
+    let value = this.loginForm.value;
+   if (this.loginForm.valid) {
     this._authService.passLoginInfo(value.email, value.pswd);
    } else {
-     this.loginControl.markAllAsTouched();
+     this.loginForm.markAllAsTouched();
    }
     // (this.navigateToMovies())
     // let email = JSON.parse(localStorage.getItem('info'));

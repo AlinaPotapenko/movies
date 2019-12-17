@@ -14,12 +14,15 @@ import { AuthService } from '../../Shared/services/auth.service';
 export class HeaderComponent implements OnInit {
   items: MenuItem[];
   userInfo;
+  userName: string;
 
   constructor(private confirmationService: ConfirmationService, private _router: Router,
               private _authService: AuthService) {
   }
 
   ngOnInit() {
+
+    this._authService.broadcast.subscribe(msg => this.userName = msg);
 
     this.items = [
       { label: 'My profile', icon: 'fa fa-home' },

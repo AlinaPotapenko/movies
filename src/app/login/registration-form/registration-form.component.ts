@@ -13,10 +13,10 @@ import { AuthService } from 'src/app/Shared/services/auth.service';
 export class RegistrationFormComponent implements OnInit {
 
   // @ViewChild('inputRef', {static: false}) inputRef: ElementRef;
-  registrationControl: FormGroup;
+  registrationForm: FormGroup;
 
   constructor(private _renderer: Renderer2, private _router: Router, private _authService: AuthService) {
-    this.registrationControl = new FormGroup({
+    this.registrationForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
       surname: new FormControl('', [Validators.required]), 
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -28,12 +28,15 @@ export class RegistrationFormComponent implements OnInit {
   }
 
   submitForm(form) {
+    if (this.registrationForm.valid) {
     let id = Math.round(Math.random()*100000000);
-    let newUser = this.registrationControl.value;
+    let newUser = this.registrationForm.value;
     newUser["access"] = true;
     localStorage.setItem(`${id}`, JSON.stringify(newUser));
     this._authService.passRegistrationInfo(id, newUser)
-  }
+    } else {
+      this.registrationForm.markAllAsTouched();
+    }
   //else {
   //   this._renderer.setStyle(this.inputRef.nativeElement,'box-shadow', 'inset 0 0 0.3em red');
   //       setTimeout(() => {
@@ -47,6 +50,6 @@ export class RegistrationFormComponent implements OnInit {
     //  }
     // }
     // this._router.navigate(['movies'], navigationExtras).then();
-  
+  } 
 
 }

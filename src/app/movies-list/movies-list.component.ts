@@ -6,7 +6,7 @@ import { map, startWith, finalize } from 'rxjs/operators';
 
 import { HttpService } from '../Shared/services/http.service';
 import { AuthService } from '../Shared/services/auth.service';
-// import {MessageService} from 'primeng/api';
+import { SharedModule } from '../Shared/shared.module';
 
 export interface Ttype {
   value: string;

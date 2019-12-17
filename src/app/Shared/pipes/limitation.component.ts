@@ -4,16 +4,11 @@ import { Pipe, PipeTransform } from '@angular/core';
     name: 'limitationPipe'
 })
 export class LimitationPipe implements PipeTransform {
-    transform(value: number, isClass?: boolean, arg2?: any): string {
-        let result;
-        switch (value) {
-            case 0:
-                result = !isClass ? 'active' : 'active-class';
-                break;
-            case 1:
-                result = !isClass ? 'inactive' : 'inactive-class';
-                break;
+    transform(value: string, args?: any): string {
+        let str = '';
+        if (value.length > 50) {
+            str = value.slice(0, 50) + '...'
         }
-        return result;
+        return str
     }
 }

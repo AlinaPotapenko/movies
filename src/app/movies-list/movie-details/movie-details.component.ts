@@ -20,8 +20,11 @@ export class MovieDetailsComponent implements OnInit {
   public showInput = true;
   public msg: string = '';
   public favMsg: string = 'Add to Favourites';
+  condition: boolean = true;
   
-  
+  toggle() {
+    this.condition = !this.condition;
+  }
 
   constructor(private _route: ActivatedRoute, private _httpService: HttpService,
               private _router: Router, private _renderer: Renderer2) {

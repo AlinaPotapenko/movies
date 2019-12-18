@@ -35,7 +35,7 @@ const ROUTES: Routes = [
     SharedMaterialModule,
   ],
   exports: [
-    SharedMaterialModule,
+    SharedMaterialModule
   ],
   entryComponents: [], 
   providers: [] 

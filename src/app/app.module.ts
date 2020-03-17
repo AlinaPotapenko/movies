@@ -12,7 +12,7 @@ import { UserProfilePageComponent } from './user-profile-page/user-profile-page.
 const APP_ROUTING: Routes = [
   {
     path: "",
-    redirectTo: "login",
+    redirectTo: "movies",
     pathMatch: "full"
   },
   {
@@ -29,7 +29,7 @@ const APP_ROUTING: Routes = [
   },
   {
     path: "movies",
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     loadChildren: () =>
       import("./movies-list/movies-list.module").then(m => m.MoviesListModule)
   },

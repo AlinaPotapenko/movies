@@ -1,17 +1,12 @@
-import { Component, OnInit, Inject, ElementRef, Renderer2, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2, ViewChild, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Router, NavigationExtras, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, startWith, finalize } from 'rxjs/operators';
 
 import { HttpService } from '../Shared/services/http.service';
-import { AuthService } from '../Shared/services/auth.service';
-import { SharedModule } from '../Shared/shared.module';
-
-export interface Ttype {
-  value: string;
-  viewValue: string;
-}
+import { IMoviesList, IMovieType } from '../Shared/models';
+import { untilDestroyed } from 'ngx-take-until-destroy';
 
 @Component({
   selector: 'app-movies-list',
@@ -19,25 +14,16 @@ export interface Ttype {
   styleUrls: ['./movies-list.component.scss']
 })
 
-
-export class MoviesListComponent implements OnInit, OnDestroy{
+export class MoviesListComponent implements OnInit, OnDestroy {
 
   @ViewChild('sValue', {static: false}) sValue: ElementRef;
-
   searchControl: FormGroup; 
-  movies: any[] = [];
-  totalResults: number;
-  date = new Date();
-  currentYear = this.date.getFullYear(); 
-  typeParam: String = '';
-  yearParam = '';
-  showSpinner = false;
-  public id;
-  public userInfo;
-  valueChanges;
-
-
-  types: Ttype[] = [
+  movies: IMoviesList[] = [];
+  totalResults: string;
+  typeParam: string = '';
+  yearParam: string = '';
+  showSpinner: boolean = false;
+  types: IMovieType[] = [
     { value: 'movie', viewValue: 'Movie' },
     { value: 'series', viewValue: 'Series' },
     { value: 'episode', viewValue: 'Episode' }
@@ -47,21 +33,17 @@ export class MoviesListComponent implements OnInit, OnDestroy{
   years: number[] = [];
   filteredYears: Observable<number[]>;
   
-  constructor(private _route: ActivatedRoute, private _httpService: HttpService, private _router: Router, //private messageService: MessageService should be added for error buttons
-              private _renderer: Renderer2, private _authService: AuthService) {
-    
-        this.searchControl = new FormGroup({
-        s: new FormControl(),
-        });  
+  constructor(private _httpService: HttpService, private _router: Router, 
+              private _renderer: Renderer2) {
+    this.searchControl = new FormGroup({
+      s: new FormControl(),
+    });  
 
-        for (let i = this.currentYear; i >= 1900; i--) {
-        this.years.push(i);
-        }  
+    this.createYearsFilter();
   }
 
   ngOnInit() {
-
-    this.valueChanges = this.searchControl.valueChanges
+    this.searchControl.valueChanges.pipe(untilDestroyed(this))
       .subscribe((value) => {
         let movieTitle: string = value.s;
         if (movieTitle === '') {
@@ -75,9 +57,14 @@ export class MoviesListComponent implements OnInit, OnDestroy{
           map(value => this._filter(value)));
   }
 
-  ngOnDestroy() {
-    this.valueChanges.unsubscribe();
+  createYearsFilter() {
+   let currentYear = new Date().getFullYear()
+    for (let i = currentYear; i >= 1900; i--) {
+      this.years.push(i);
+    }  
   }
+
+  ngOnDestroy() {}
   
   private _filter(value) {
      return this.years.filter(year => year.toString().includes(value));

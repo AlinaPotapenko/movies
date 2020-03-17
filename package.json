@@ -23,6 +23,7 @@
     "@angular/router": "~8.2.14",
     "core-js": "3.2.1",
     "font-awesome": "^4.7.0",
+    "ngx-take-until-destroy": "^5.4.0",
     "primeicons": "^2.0.0",
     "primeng": "^9.0.0-rc.2",
     "rxjs": "~6.5.3",

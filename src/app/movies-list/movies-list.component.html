@@ -18,7 +18,7 @@
               <div class = "block"> 
                 <mat-form-field class = "advancedOption">
                   <mat-label>Type</mat-label>
-                    <mat-select [(value)]="type" (selectionChange) = "settingType($event)">
+                    <mat-select [(value)]="types" (selectionChange) = "settingType($event)">
                       <mat-option *ngFor="let type of types" [value]="type.value">
                         {{type.viewValue }}
                       </mat-option>

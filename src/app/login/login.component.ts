@@ -12,8 +12,8 @@ import { AuthService } from '../Shared/services/auth.service';
 
 export class LoginComponent implements OnInit {
 
- @ViewChild('emailRef', {static: false}) emailRef: ElementRef;
- @ViewChild('pswdRef', {static: false}) pswdRef: ElementRef;
+ @ViewChild('emailRef') emailRef: ElementRef;
+ @ViewChild('pswdRef') pswdRef: ElementRef;
  
  loginForm: FormGroup;
  wrongCredentials: Boolean = false;

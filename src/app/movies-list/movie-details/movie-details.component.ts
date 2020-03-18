@@ -11,7 +11,7 @@ import { HttpService } from 'src/app/Shared/services/';
 
 export class MovieDetailsComponent implements OnInit {
 
-  @ViewChild('commentRef', {static: false}) commentRef: ElementRef;
+  @ViewChild('commentRef') commentRef: ElementRef;
 
   public imdbId: string;
   public movie: any[] = [];

@@ -16,7 +16,7 @@ import { untilDestroyed } from 'ngx-take-until-destroy';
 
 export class MoviesListComponent implements OnInit, OnDestroy {
 
-  @ViewChild('sValue', {static: false}) sValue: ElementRef;
+  @ViewChild('sValue') sValue: ElementRef;
   searchForm: FormGroup; 
   movies: IMoviesList[] = [];
   totalResults: string;

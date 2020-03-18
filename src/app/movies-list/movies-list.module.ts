@@ -35,7 +35,9 @@ const ROUTES: Routes = [
     SharedMaterialModule,
   ],
   exports: [
-    SharedMaterialModule
+    SharedMaterialModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   entryComponents: [], 
   providers: [] 

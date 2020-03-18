@@ -17,7 +17,7 @@ import { untilDestroyed } from 'ngx-take-until-destroy';
 export class MoviesListComponent implements OnInit, OnDestroy {
 
   @ViewChild('sValue', {static: false}) sValue: ElementRef;
-  searchControl: FormGroup; 
+  searchForm: FormGroup; 
   movies: IMoviesList[] = [];
   totalResults: string;
   typeParam: string = '';
@@ -35,7 +35,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   
   constructor(private _httpService: HttpService, private _router: Router, 
               private _renderer: Renderer2) {
-    this.searchControl = new FormGroup({
+    this.searchForm = new FormGroup({
       s: new FormControl(),
     });  
 
@@ -43,7 +43,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.searchControl.valueChanges.pipe(untilDestroyed(this))
+    this.searchForm.valueChanges.pipe(untilDestroyed(this))
       .subscribe((value) => {
         let movieTitle: string = value.s;
         if (movieTitle === '') {
@@ -89,9 +89,9 @@ export class MoviesListComponent implements OnInit, OnDestroy {
     params.type = this.typeParam;
     params.y = this.yearParam;
 
-    Object.keys(this.searchControl.value)
-      .filter(element => this.searchControl.controls[element].value)
-        .map(elem => params[elem] = this.searchControl.controls[elem].value);
+    Object.keys(this.searchForm.value)
+      .filter(element => this.searchForm.controls[element].value)
+        .map(elem => params[elem] = this.searchForm.controls[elem].value);
 
     this._httpService.get(params)
       .pipe(

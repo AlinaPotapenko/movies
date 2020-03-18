@@ -2,7 +2,7 @@
 
 <h1 class = "heading">MovieLand</h1>
     <!-- <div class="{{0 | limitationPipe:true:5}}">{{0 | limitationPipe}}</div> -->
-    <form [formGroup] = "searchControl" (submit)="submitting()" class = "searchField">
+    <form [formGroup] = "searchForm" (submit)="submitting()" class = "searchField">
         <label for ="sValue">
            <input formControlName = "s" placeholder="  type a movie title here" class = "inputField" #sValue id = "sValue">
         </label>

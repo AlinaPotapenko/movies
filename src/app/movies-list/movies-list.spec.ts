@@ -28,11 +28,11 @@ describe('MoviesListComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  test('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should create properties', () => {
+  test('should create properties', () => {
     expect(component.showSpinner).toBeFalsy();
   });
 

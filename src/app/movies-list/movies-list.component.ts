@@ -40,6 +40,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
     });  
 
     this.createYearsFilter();
+    console.log(typeof this.searchForm)
   }
 
   ngOnInit() {
@@ -118,6 +119,10 @@ export class MoviesListComponent implements OnInit, OnDestroy {
  
   public doPaginate(e?) {
     this.submitting(e.pageIndex + 1);
+  }
+
+  showSpinnerFunc(): boolean {
+    return this.showSpinner;
   }
 
   navigateToDetails(movie) {

@@ -20,16 +20,13 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   searchForm: FormGroup; 
   movies: IMoviesList[] = [];
   totalResults: string;
-  typeParam: string = '';
-  yearParam: string = '';
   showSpinner: boolean = false;
+  showAdvancedPanel: boolean = false;
   types: IMovieType[] = [
     { value: 'movie', viewValue: 'Movie' },
     { value: 'series', viewValue: 'Series' },
     { value: 'episode', viewValue: 'Episode' }
   ];
-
-  y = new FormControl();
   years: number[] = [];
   filteredYears: Observable<number[]>;
   
@@ -37,22 +34,20 @@ export class MoviesListComponent implements OnInit, OnDestroy {
               private _renderer: Renderer2) {
     this.searchForm = new FormGroup({
       s: new FormControl(),
+      type: new FormControl(),
+      y: new FormControl()
     });  
 
     this.createYearsFilter();
-    console.log(typeof this.searchForm)
   }
 
   ngOnInit() {
     this.searchForm.valueChanges.pipe(untilDestroyed(this))
       .subscribe((value) => {
-        let movieTitle: string = value.s;
-        if (movieTitle === '') {
-          this.movies = [];
-        }
+        if (!value.s) { this.movies = [] };
     });
 
-    this.filteredYears = this.y.valueChanges
+    this.filteredYears = this.searchForm.controls.y.valueChanges
       .pipe(
         startWith(''),
           map(value => this._filter(value)));
@@ -71,29 +66,22 @@ export class MoviesListComponent implements OnInit, OnDestroy {
      return this.years.filter(year => year.toString().includes(value));
   }
 
-  settingType(type) {
-     return this.typeParam = type.value; 
-  }
-
-  settingYear(year) {
-     return this.yearParam = year.option.value;
-  }
-
-  submitting(page?) {
+  submitParams(page?) {
     this.showSpinner = true;
     
     let params: any = {};
-    
     if (page) {
       params.page = page;
     }
-    params.type = this.typeParam;
-    params.y = this.yearParam;
-
     Object.keys(this.searchForm.value)
       .filter(element => this.searchForm.controls[element].value)
         .map(elem => params[elem] = this.searchForm.controls[elem].value);
+    
+    this.getMovies(params);
 
+  }
+    
+  getMovies(params) {
     this._httpService.get(params)
       .pipe(
         finalize(() => this.showSpinner = false)
@@ -104,6 +92,10 @@ export class MoviesListComponent implements OnInit, OnDestroy {
             this.totalResults = data.totalResults;
          }
       });
+  }
+
+  toggleAdvancedPanel() {
+    this.showAdvancedPanel = !this.showAdvancedPanel;
   }
 
   validate(value) {
@@ -117,8 +109,8 @@ export class MoviesListComponent implements OnInit, OnDestroy {
     }
   }
  
-  public doPaginate(e?) {
-    this.submitting(e.pageIndex + 1);
+  doPaginate(e?) {
+    this.submitParams(e.pageIndex + 1);
   }
 
   showSpinnerFunc(): boolean {

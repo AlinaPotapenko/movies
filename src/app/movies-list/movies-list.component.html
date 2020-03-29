@@ -1,39 +1,31 @@
-<!-- <app-header></app-header> -->
-
 <h1 class = "heading">MovieLand</h1>
-    <!-- <div class="{{0 | limitationPipe:true:5}}">{{0 | limitationPipe}}</div> -->
-    <form [formGroup] = "searchForm" (submit)="submitting()" class = "searchField">
-        <label for ="sValue">
-           <input formControlName = "s" placeholder="  type a movie title here" class = "inputField" #sValue id = "sValue">
+    <form [formGroup] = "searchForm" (submit)="submitParams()" class = "searchField">
+        <label for ="sValue" class="search-icon">
+           <input formControlName="s" class="inputField" #sValue id="sValue">
+            <i class="fa fa-search" [class.notEmpty]="sValue.value.length"></i>
         </label>
-        <button class = "button" type="submit" (click) = "validate(sValue.value)">
-            <i class="fa fa-search"></i>  Search
+        <button class="button search" type="submit" (click) = "validate(sValue.value)">
+        Search
         </button>
-        <button class = "button">
-            <label for = "openAdvanced">Advanced   </label>
-              <i class="fa fa-ellipsis-v"></i>
+        <button class="button advanced" (click)="toggleAdvancedPanel()">
+          Advanced
         </button>
-        <div class = "advancedPanel">
-            <input type="checkbox" id="openAdvanced">
-              <div class = "block"> 
-                <mat-form-field class = "advancedOption">
-                  <mat-label>Type</mat-label>
-                    <mat-select [(value)]="types" (selectionChange) = "settingType($event)">
-                      <mat-option *ngFor="let type of types" [value]="type.value">
-                        {{type.viewValue }}
-                      </mat-option>
-                    </mat-select>
-                </mat-form-field>  
-
-                <mat-form-field class = "advancedOption">
+        <div *ngIf="showAdvancedPanel" class="block">
+            <select formControlName="type">
+              <option [value]="null">...movie type</option>
+                <option  *ngFor="let type of types" [ngValue]="type.value">
+                  {{type.viewValue}}                               
+                </option>
+             </select>
+              
+                <!-- <mat-form-field class = "advancedOption">
                   <input type="text" placeholder="Select a year" aria-label="Number" matInput [formControl]="y" [matAutocomplete]="auto">
                     <mat-autocomplete #auto="matAutocomplete" (optionSelected)="settingYear($event)">
                       <mat-option *ngFor="let year of filteredYears | async" [value]="year" >
                         {{ year }}
                       </mat-option>
                     </mat-autocomplete>
-                </mat-form-field>
-              </div>
+                </mat-form-field> -->
         </div> 
     </form>
 
@@ -60,11 +52,4 @@
                    (page)="doPaginate($event)">
     </mat-paginator>
     </ul>
-    
-<!-- <div class = "errorsButtons">
-<button type="button" pButton (click)="makeError('404')" label="Error 404" class="ui-button-danger"></button>
-<button type="button" pButton (click)="makeError('503')" label="Error 503" class="ui-button-danger"></button>
-</div>
-<p-toast position="top-right"></p-toast> -->
-
 

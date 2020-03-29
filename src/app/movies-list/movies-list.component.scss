@@ -30,9 +30,6 @@
 .matSpinner ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
 stroke: #636262;
 }
-i {
-   color: #e4018d; 
-}
 .block {
     background-color: #edebeb;
     color: #545454;
@@ -42,12 +39,6 @@ i {
     margin-right: auto;
     margin-left: auto; 
     margin-top: 15px;
-}
-.advancedPanel > .block {
-    display: none;
-}
-.advancedPanel > input:checked + .block {
-    display: block;
 }
 mat-paginator {
     background: #edebeb;
@@ -67,25 +58,46 @@ mat-paginator {
 }
 .heading {
     text-align: center;
-    font-family: Constantia;
     color: white;
-    margin-top: 82px;
-    font-size: 3em;
+    margin: 82px 0 35px; 
+    font-size: 4em;
     text-shadow: #545454 0 0 15px; // #a19b9a
 }
 .inputField {
     width: 57%;
-    font-family: Constantia;
     color: #a19b9a;
-    border-radius: 3px;
+    border-radius: 15px;
+    height: 40px;
+    padding: 3px 25px 0 40px;
+    letter-spacing: 0.5px;
+}
+label {
+    position: relative;
+}
+i {
+    position: absolute;
+    left: 16px;
+    top: 2px;
+    color: grey;
+    &.notEmpty {
+        color: #ff1ba8;
+    }
 }
 .button {
-    background: #edebeb;
-    color: #545454;
-    border: 1px solid #636262;
-    border-radius: 3px;
-    height: 22px;
-    font-family: Constantia;
+    background: #ff1ba8;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    height: 40px;
+    padding: 0 15px;
+    font-size: 16px;
+    letter-spacing: 0.3px;
+    &.search {
+        margin: 0 2px;
+    }
+    &.advanced {
+        background: #1bffea;
+    }
 }
 .button:hover, button label:hover {
     cursor: pointer;

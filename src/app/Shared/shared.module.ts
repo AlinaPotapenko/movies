@@ -9,6 +9,7 @@ import { HttpService } from './services/http.service';
 import { Myinterceptor } from '../interceptors/Myinterceptor.service';
 import { LimitationPipe } from './pipes/limitation.component';
 import { BoldDirective } from '../Directives/bold.directive';
+import { DataService } from './services/data.service';
 
 
 
@@ -29,7 +30,8 @@ import { BoldDirective } from '../Directives/bold.directive';
     {   provide: HTTP_INTERCEPTORS,
         useClass: Myinterceptor,
         multi: true
-    }
+    },
+    DataService
   ],
   exports: [
     CommonModule,

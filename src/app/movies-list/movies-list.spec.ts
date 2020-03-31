@@ -5,6 +5,7 @@ import { SharedModule } from '../Shared/shared.module';
 import { MoviesListComponent } from './movies-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormGroup, FormControl } from '@angular/forms';
+import { DataService } from '../Shared/services/data.service';
 
 describe('MoviesListComponent', () => {
   let component: MoviesListComponent;
@@ -50,34 +51,19 @@ describe('MoviesListComponent', () => {
       jest.spyOn(MoviesListComponent.prototype, 'createYearsFilter');
       fixture = TestBed.createComponent(MoviesListComponent);
       component = fixture.componentInstance;
-      expect(MoviesListComponent.prototype.createYearsFilter).toHaveBeenCalled();
+      expect(MoviesListComponent.prototype.createYearsFilter).toHaveBeenCalledTimes(1);
     
       let currentYear = new Date().getFullYear();
       expect(component.years.length).toEqual(currentYear - 1900 + 1);
       expect(component.years.some(elem => typeof elem != "number")).toBeFalsy();
   })
 
-  test('ngOnInit should update movies property when input is empty', () => {
-  //   let el = fixture.nativeElement.querySelector('input');
-  //   component.searchForm.controls.s.setValue('movie');
-  //   el.value = 'movie'
-  // el.dispatchEvent(new Event('input'));
-  // component.submitParams()
-  // fixture.detectChanges();
-  // // fixture.whenStable().then(() => {
-  //   expect(component.movies.length).toBe(0);
-  // // })
-  })
-
-  test('getMovies function should make an API call according to the search query', async () => {
-    // expect.assertions(1);
-    let el = fixture.nativeElement.querySelector('input');
-    component.searchForm.controls.s.setValue('movie');
-    el.value = 'movie'
-  el.dispatchEvent(new Event('input'));
-    await component.getMovies({s: 'movie'});
-    console.log(el.value)
-    expect(component.movies.length).toBe(0)
+  test('works with resolves', (done) => {
+    component.getMovies({s: 'movie'})
+    setTimeout(() => {
+      expect(component.movies.length).toBeGreaterThan(0);
+      done();
+    }, 3000);
+  });
   
-  })
 });

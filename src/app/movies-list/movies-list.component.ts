@@ -7,6 +7,7 @@ import { map, startWith, finalize } from 'rxjs/operators';
 import { HttpService } from '../Shared/services/http.service';
 import { IMoviesList, IMovieType } from '../Shared/models';
 import { untilDestroyed } from 'ngx-take-until-destroy';
+import { DataService } from '../Shared/services/data.service';
 
 @Component({
   selector: 'app-movies-list',
@@ -30,7 +31,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   years: number[] = [];
   filteredYears: Observable<number[]>;
   
-  constructor(private _httpService: HttpService, private _router: Router, 
+  constructor(private _dataService: DataService, private _router: Router, 
               private _renderer: Renderer2) {
     this.searchForm = new FormGroup({
       s: new FormControl(),
@@ -82,16 +83,16 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   }
     
   getMovies(params) {
-    this._httpService.get(params)
-      .pipe(
-        finalize(() => this.showSpinner = false)
-      )
-        .subscribe(data => {
-         if (data.Search) {
-            this.movies = data.Search;
-            this.totalResults = data.totalResults;
-         }
-      });
+    this._dataService.getMovies(params)
+    .pipe(
+      finalize(() => this.showSpinner = false)
+    )
+      .subscribe(data => {
+       if (data.Search) {
+          this.movies = data.Search;
+          this.totalResults = data.totalResults;
+       }
+    });
   }
 
   toggleAdvancedPanel() {

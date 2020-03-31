@@ -1,5 +1,6 @@
 <h1 class = "heading">MovieLand</h1>
-    <form [formGroup] = "searchForm" (submit)="submitParams()" class = "searchField">
+    <form [formGroup] = "searchForm" (submit)="submitParams()" 
+    class = "searchField" autocomplete="off">
         <label for ="sValue" class="search-icon">
            <input formControlName="s" class="inputField" #sValue id="sValue">
             <i class="fa fa-search" [class.notEmpty]="sValue.value.length"></i>

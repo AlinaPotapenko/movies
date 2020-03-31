@@ -1,3 +1,6 @@
+$fuchsia: #ff44b8;
+$cyan: #1bffea;
+
 .searchField {
     box-sizing: border-box;
     width: 60%;
@@ -5,22 +8,6 @@
     text-align: center;
     margin-right: auto;
     margin-left: auto; 
-}
-.errorsButtons {
-    display: block;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-}
-.ui-button-danger {
-    margin: 5px;
-}
-#openAdvanced {
-    display: none;
-}
-:host ::ng-deep.ui-button, :host ::ng-deep.ui-button:enabled:hover {
-    background-color: #e4018d;
-    border: #e4018d;
 }
 .matSpinner {
     position: fixed;
@@ -57,15 +44,23 @@ mat-paginator {
     padding: 0px;
 }
 .heading {
+    font-family: 'Luckiest Guy', cursive;
+    letter-spacing: 3px;
     text-align: center;
     color: white;
-    margin: 82px 0 35px; 
+    margin: 85px 0 30px; 
     font-size: 4em;
-    text-shadow: #545454 0 0 15px; // #a19b9a
+    text-shadow:-3px 0px 5px $fuchsia, -4px 0px 2px $fuchsia, 
+                 0px 0px 10px $fuchsia, 2px 0px 3px $fuchsia, 
+                 0px -1px 5px $fuchsia, 0px -2px 0px $fuchsia, 
+                 0px 1px 5px $fuchsia, 0px 2px 3px $fuchsia;
+    -webkit-background-clip: text;
+     -moz-background-clip: text;
+          background-clip: text;
 }
 .inputField {
     width: 57%;
-    color: #a19b9a;
+    color: grey; //#a19b9a;
     border-radius: 15px;
     height: 40px;
     padding: 3px 25px 0 40px;
@@ -80,11 +75,11 @@ i {
     top: 2px;
     color: grey;
     &.notEmpty {
-        color: #ff1ba8;
+        color: $fuchsia;
     }
 }
 .button {
-    background: #ff1ba8;
+    background: $fuchsia;
     color: white;
     border: none;
     border-radius: 15px;
@@ -96,7 +91,7 @@ i {
         margin: 0 2px;
     }
     &.advanced {
-        background: #1bffea;
+        background: $cyan;
     }
 }
 .button:hover, button label:hover {

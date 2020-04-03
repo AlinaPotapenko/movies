@@ -68,7 +68,7 @@ describe('MoviesListComponent', () => {
       expect(component.years.some(elem => typeof elem != "number")).toBeFalsy();
   })
 
-   test('submitParams function should be invoked by search button and return if searchForm is invalid', () => {
+   test('submitParams function should be invoked by click upon search button and return if searchForm is invalid', () => {
      jest.spyOn(component, 'submitParams');
      jest.spyOn(component, 'getMovies');
      let button = fixture.debugElement.nativeElement.querySelector('.search');
@@ -107,4 +107,14 @@ describe('MoviesListComponent', () => {
     expect(component.showSpinner).toBeFalsy();
   }));
   
+  test('toggleAdvancedPanel function should be invoked by click upon advanced button', () => {
+    jest.spyOn(component, 'toggleAdvancedPanel');
+    let startAdvancedPanelState = component.showAdvancedPanel;
+    let button = fixture.debugElement.nativeElement.querySelector('.advanced');
+    button.click();
+    fixture.whenStable().then(() => {
+     expect(component.toggleAdvancedPanel).toHaveBeenCalledTimes(1);
+     expect(component.showAdvancedPanel).toBe(!startAdvancedPanelState);
+   });
+  })
 });

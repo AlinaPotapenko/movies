@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, Renderer2, ViewChild, OnDestroy } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, startWith, finalize } from 'rxjs/operators';
@@ -66,6 +66,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   }
 
   submitParams(page?) {
+    if (this.searchForm.invalid) return;
     this.showSpinner = true;
     
     let params: any = {};
@@ -77,7 +78,6 @@ export class MoviesListComponent implements OnInit, OnDestroy {
         .map(elem => params[elem] = this.searchForm.controls[elem].value);
     
     this.getMovies(params);
-
   }
     
   getMovies(params) {

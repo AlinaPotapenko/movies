@@ -2,7 +2,7 @@
     <form [formGroup] = "searchForm" (submit)="submitParams()" 
     class = "searchField" autocomplete="off">
         <label for ="sValue" class="search-icon">
-           <input formControlName="s" class="inputField" #sValue id="sValue">
+           <input formControlName="s" class="inputField" #sValue id="sValue" required>
             <i class="fa fa-search" [class.notEmpty]="sValue.value.length"></i>
         </label>
         <button class="button search" type="submit" (click) = "validate(sValue.value)">

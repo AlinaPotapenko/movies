@@ -37,13 +37,16 @@ describe('MoviesListComponent', () => {
     fixture.detectChanges();
   }));
 
-  test('should create', () => {
+  test('should create component', () => {
     expect(component).toBeTruthy();
   });
 
   test('should create properties', () => {
     expect(component.showSpinner).toBeFalsy();
     expect(component.showAdvancedPanel).toBeFalsy();
+  });
+
+  test('should create FormGroup with controls', () =>{
     expect(component.searchForm).toBeDefined();
     expect(component.searchForm instanceof FormGroup).toBeTruthy();
     expect(component.searchForm.controls.s).toBeDefined();
@@ -52,7 +55,7 @@ describe('MoviesListComponent', () => {
     expect(component.searchForm.controls.type instanceof FormControl).toBeTruthy();
     expect(component.searchForm.controls.y).toBeDefined();
     expect(component.searchForm.controls.y instanceof FormControl).toBeTruthy();
-  });
+  })
 
   test('createYearsFilter function should fill the years property with years', () => {
       jest.spyOn(MoviesListComponent.prototype, 'createYearsFilter');
@@ -65,6 +68,26 @@ describe('MoviesListComponent', () => {
       expect(component.years.some(elem => typeof elem != "number")).toBeFalsy();
   })
 
+   test('submitParams function should be invoked by search button and return if searchForm is invalid', () => {
+     jest.spyOn(component, 'submitParams');
+     jest.spyOn(component, 'getMovies');
+     let button = fixture.debugElement.nativeElement.querySelector('.search');
+     button.click();
+     fixture.whenStable().then(() => {
+      expect(component.submitParams).toHaveBeenCalledTimes(1);
+      expect(component.getMovies).not.toHaveBeenCalled();
+    });
+   })
+
+   test('submitParams function should create params object and pass it to getMovies function', () => {
+      jest.spyOn(component, 'getMovies')  
+      component.searchForm.controls.s.setValue('movie');
+      component.searchForm.controls.type.setValue('movie')
+      component.submitParams(2);
+      expect(component.getMovies).toHaveBeenCalledTimes(1);
+      expect(component.getMovies).toHaveBeenCalledWith({s: 'movie', type: 'movie', page: 2})
+   })
+
   test('getMovies function makes API call and get movies list according to the search query',
    fakeAsync(() => {
     let movies = { 
@@ -72,7 +95,7 @@ describe('MoviesListComponent', () => {
         totalResults: '20',
         Response: 'true' 
       };
-
+      
     jest.spyOn(dataService, 'getMovies').mockReturnValue(of(movies));
 
     component.getMovies({s: 'movie'});

@@ -60,8 +60,6 @@ export class MoviesListComponent implements OnInit, OnDestroy {
       this.years.push(i);
     }  
   }
-
-  ngOnDestroy() {}
   
   private _filter(value) {
      return this.years.filter(year => year.toString().includes(value));
@@ -83,10 +81,8 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   }
     
   getMovies(params) {
-    this._dataService.getMovies(params)
-    .pipe(
-      finalize(() => this.showSpinner = false)
-    )
+    this._dataService.getMovies(params).pipe(finalize(() => 
+    this.showSpinner = false))
       .subscribe(data => {
        if (data.Search) {
           this.movies = data.Search;
@@ -114,13 +110,11 @@ export class MoviesListComponent implements OnInit, OnDestroy {
     this.submitParams(e.pageIndex + 1);
   }
 
-  showSpinnerFunc(): boolean {
-    return this.showSpinner;
-  }
-
   navigateToDetails(movie) {
     this._router.navigate([`movies/details/${movie.imdbID}`]).then();
   }
+
+  ngOnDestroy() {}
 
 }
 

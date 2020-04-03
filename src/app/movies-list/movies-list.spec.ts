@@ -1,16 +1,20 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject, fakeAsync } from '@angular/core/testing';
 import { RouterTestingModule } from "@angular/router/testing";
 import { SharedMaterialModule } from '../Shared/shared-material.module';
 import { SharedModule } from '../Shared/shared.module';
 import { MoviesListComponent } from './movies-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormGroup, FormControl } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DataService } from '../Shared/services/data.service';
+import { of } from 'rxjs/internal/observable/of';
+
 
 describe('MoviesListComponent', () => {
   let component: MoviesListComponent;
   let fixture: ComponentFixture<MoviesListComponent>;
-
+  let dataService;
+ 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ MoviesListComponent ],
@@ -19,16 +23,19 @@ describe('MoviesListComponent', () => {
         SharedMaterialModule,
         SharedModule,
         RouterTestingModule.withRoutes([]),
+        HttpClientTestingModule
       ],
+      providers: [DataService]
     })
     .compileComponents();
   }));
 
-  beforeEach(() => {
+  beforeEach(inject([DataService], s => {
+    dataService = s; 
     fixture = TestBed.createComponent(MoviesListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  }));
 
   test('should create', () => {
     expect(component).toBeTruthy();
@@ -58,12 +65,23 @@ describe('MoviesListComponent', () => {
       expect(component.years.some(elem => typeof elem != "number")).toBeFalsy();
   })
 
-  test('works with resolves', (done) => {
-    component.getMovies({s: 'movie'})
-    setTimeout(() => {
-      expect(component.movies.length).toBeGreaterThan(0);
-      done();
-    }, 3000);
-  });
+  test('getMovies function makes API call and get movies list according to the search query',
+   fakeAsync(() => {
+    let movies = { 
+        Search: [{ Title: 'Cool movie', Year: '2019', imdbID: '123', Type: 'movie', Poster: 'N/A'}],
+        totalResults: '20',
+        Response: 'true' 
+      };
+
+    jest.spyOn(dataService, 'getMovies').mockReturnValue(of(movies));
+
+    component.getMovies({s: 'movie'});
+
+    expect(dataService.getMovies).toHaveBeenCalledTimes(1);
+    expect(dataService.getMovies).toHaveBeenCalledWith({s: 'movie'});
+    expect(component.movies).toEqual(movies.Search);
+    expect(component.totalResults).toBe('20');
+    expect(component.showSpinner).toBeFalsy();
+  }));
   
 });

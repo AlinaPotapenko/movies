@@ -43,15 +43,19 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.searchForm.valueChanges.pipe(untilDestroyed(this))
-      .subscribe((value) => {
-        if (!value.s) { this.movies = [] };
-    });
+    this.trackInputValueChanges();
 
     this.filteredYears = this.searchForm.controls.y.valueChanges
       .pipe(
         startWith(''),
           map(value => this._filter(value)));
+  }
+
+  trackInputValueChanges() {
+    this.searchForm.valueChanges.pipe(untilDestroyed(this))
+      .subscribe((value) => {
+        if (!value.s) { this.movies = [] };
+    });
   }
 
   createYearsFilter() {
@@ -97,7 +101,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
 
   validate(value) {
     if(value == "") {
-      this._renderer.setStyle(this.sValue.nativeElement,'box-shadow', 'inset 0 0 0.3em red');
+      this._renderer.setStyle(this.sValue.nativeElement,'box-shadow', 'inset 0 0 0.5em #fa0d18');
         setTimeout(() => {
         this._renderer.setStyle(this.sValue.nativeElement,'box-shadow', ''); 
         }, 3000);

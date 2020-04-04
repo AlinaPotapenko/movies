@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed, inject, fakeAsync } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject, fakeAsync, tick } from '@angular/core/testing';
 import { RouterTestingModule } from "@angular/router/testing";
 import { SharedMaterialModule } from '../Shared/shared-material.module';
 import { SharedModule } from '../Shared/shared.module';
@@ -8,6 +8,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DataService } from '../Shared/services/data.service';
 import { of } from 'rxjs/internal/observable/of';
+import { By } from '@angular/platform-browser';
 
 
 describe('MoviesListComponent', () => {
@@ -67,6 +68,15 @@ describe('MoviesListComponent', () => {
       expect(component.years.length).toEqual(currentYear - 1900 + 1);
       expect(component.years.some(elem => typeof elem != "number")).toBeFalsy();
   })
+
+  test('trackInputValueChanges should clean movies property when input is cleaned by user', () => {
+    component.searchForm.controls.s.setValue('movie');
+    component.movies = [{ Title: 'Cool movie', Year: '2019', imdbID: '123', Type: 'movie', Poster: 'N/A'}];
+    fixture.detectChanges()
+    component.searchForm.controls.s.setValue('');
+    fixture.detectChanges();
+    expect(component.movies.length).toBe(0);
+  });
 
    test('submitParams function should be invoked by click upon search button and return if searchForm is invalid', () => {
      jest.spyOn(component, 'submitParams');

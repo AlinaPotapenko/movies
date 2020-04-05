@@ -65,6 +65,9 @@ mat-paginator {
     height: 40px;
     padding: 3px 25px 0 40px;
     letter-spacing: 0.5px;
+    &.isInvalid {
+        border: 2px solid red;
+    }
 }
 label {
     position: relative;

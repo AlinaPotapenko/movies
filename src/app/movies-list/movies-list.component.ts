@@ -1,10 +1,9 @@
-import { Component, OnInit, ElementRef, Renderer2, ViewChild, OnDestroy } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, startWith, finalize } from 'rxjs/operators';
 
-import { HttpService } from '../Shared/services/http.service';
 import { IMoviesList, IMovieType } from '../Shared/models';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { DataService } from '../Shared/services/data.service';
@@ -16,8 +15,6 @@ import { DataService } from '../Shared/services/data.service';
 })
 
 export class MoviesListComponent implements OnInit, OnDestroy {
-
-  @ViewChild('sValue') sValue: ElementRef;
   searchForm: FormGroup; 
   movies: IMoviesList[] = [];
   totalResults: string;
@@ -30,9 +27,9 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   ];
   years: number[] = [];
   filteredYears: Observable<number[]>;
-  
-  constructor(private _dataService: DataService, private _router: Router, 
-              private _renderer: Renderer2) {
+  isInvalid: boolean = false;
+
+  constructor(private _dataService: DataService, private _router: Router) {
     this.searchForm = new FormGroup({
       s: new FormControl(),
       type: new FormControl(),
@@ -99,15 +96,13 @@ export class MoviesListComponent implements OnInit, OnDestroy {
     this.showAdvancedPanel = !this.showAdvancedPanel;
   }
 
-  validate(value) {
-    if(value == "") {
-      this._renderer.setStyle(this.sValue.nativeElement,'box-shadow', 'inset 0 0 0.5em #fa0d18');
-        setTimeout(() => {
-        this._renderer.setStyle(this.sValue.nativeElement,'box-shadow', ''); 
-        }, 3000);
-    } else {
-      this._renderer.setStyle(this.sValue.nativeElement,'box-shadow', '');
-    }
+  validateInput(value) {
+    if (!value) {
+      this.isInvalid = true;
+      setTimeout(() => {
+        this.isInvalid = false;
+      }, 3000)
+    };
   }
  
   doPaginate(e?) {

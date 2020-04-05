@@ -1,12 +1,14 @@
 <h1 class = "heading">MovieLand</h1>
     <form [formGroup] = "searchForm" (submit)="submitParams()" 
     class = "searchField" autocomplete="off">
-        <label for ="sValue" class="search-icon">
-           <input formControlName="s" class="inputField" #sValue id="sValue" required>
-            <i class="fa fa-search" [class.notEmpty]="sValue.value.length"></i>
+        <label>
+           <input formControlName="s" class="inputField" #searchQuery
+               [class.isInvalid]="isInvalid ? true : false" required>
+            <i class="fa fa-search" [class.notEmpty]="searchQuery.value.length"></i>
         </label>
-        <button class="button search" type="submit" (click) = "validate(sValue.value)">
-        Search
+        <button class="button search" type="submit" 
+                (click)="validateInput(searchQuery.value)">
+                Search
         </button>
         <button class="button advanced" (click)="toggleAdvancedPanel()">
           Advanced
@@ -14,7 +16,7 @@
         <div *ngIf="showAdvancedPanel" class="block">
             <select formControlName="type">
               <option [value]="null">...movie type</option>
-                <option  *ngFor="let type of types" [ngValue]="type.value">
+                <option *ngFor="let type of types" [ngValue]="type.value">
                   {{type.viewValue}}                               
                 </option>
              </select>

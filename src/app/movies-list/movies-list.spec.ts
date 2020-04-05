@@ -126,5 +126,21 @@ describe('MoviesListComponent', () => {
      expect(component.toggleAdvancedPanel).toHaveBeenCalledTimes(1);
      expect(component.showAdvancedPanel).toBe(!startAdvancedPanelState);
    });
+  });
+
+  test('validateInput function should update isInvalid property when user searches with empty input', 
+      () => {
+      jest.useFakeTimers();
+      jest.spyOn(component, 'validateInput');
+      let button = fixture.debugElement.nativeElement.querySelector('.search');
+
+      expect(component.isInvalid).toBeFalsy();
+      button.click();
+      expect(component.isInvalid).toBeTruthy()
+      jest.advanceTimersByTime(3000);
+      expect(component.isInvalid).toBeFalsy()
+   })
+
   })
-});
+
+

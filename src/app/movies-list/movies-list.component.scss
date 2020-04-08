@@ -9,6 +9,25 @@ $cyan: #1bffea;
     margin-right: auto;
     margin-left: auto; 
 }
+.advance-block {
+    margin: 10px 75px 10px 80px;
+    text-align: left;
+    display: flex;
+    justify-content: flex-start;
+}
+.advance-type {
+    margin-right: 70px;
+    width: 170px;
+    height: 35px;
+    border-radius: 10px;
+    padding: 3px 7px;
+    color: grey;
+    font-weight: bolder;
+    border: 1px inset;
+}
+::ng-deep.ui-dropdown {
+    margin-right: 90px;
+}
 .matSpinner {
     position: fixed;
     top: 50%;
@@ -17,16 +36,6 @@ $cyan: #1bffea;
 .matSpinner ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
 stroke: #636262;
 }
-.block {
-    background-color: #edebeb;
-    color: #545454;
-    width: 50%;
-    border: 2px solid #636262;
-    border-radius: 7px;
-    margin-right: auto;
-    margin-left: auto; 
-    margin-top: 15px;
-}
 mat-paginator {
     background: #edebeb;
     width: 55%;
@@ -34,10 +43,6 @@ mat-paginator {
     margin-left: auto; 
     border-radius: 7px;
     border: 2px solid #636262;
-    color: #545454;
-}
-.advancedOption {
-    margin-right: 15px;
     color: #545454;
 }
 .moviesList {

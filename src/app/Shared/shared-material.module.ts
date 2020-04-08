@@ -1,10 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
-
-import { HttpService } from './services/http.service';
 
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -16,7 +11,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { RatingModule } from 'primeng/rating';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import { ResolverService } from '../resolver.service';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
@@ -25,6 +19,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { MenuModule } from "primeng/menu";
 import { HeaderComponent } from '../movies-list/header/header.component';
+import { DropdownModule } from 'primeng/dropdown';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [ HeaderComponent ],
@@ -40,12 +36,12 @@ import { HeaderComponent } from '../movies-list/header/header.component';
     InputTextareaModule,
     ConfirmDialogModule,
     MatInputModule,
-    FormsModule,
     ToastModule,
     InputTextModule,
     PasswordModule,
     MenuModule,
-    ReactiveFormsModule
+    DropdownModule,
+    ButtonModule
   ],
   exports: [
     MatPaginatorModule,
@@ -62,7 +58,9 @@ import { HeaderComponent } from '../movies-list/header/header.component';
     PasswordModule,
     MenuModule,
     MatInputModule,
-    HeaderComponent
+    HeaderComponent,
+    DropdownModule,
+    ButtonModule
   ],
   providers: [ConfirmationService, MessageService]
 })

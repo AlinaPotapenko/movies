@@ -25,8 +25,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
     { value: 'series', viewValue: 'Series' },
     { value: 'episode', viewValue: 'Episode' }
   ];
-  years: number[] = [];
-  filteredYears: Observable<number[]>;
+  years: Array<object> = [];
   isInvalid: boolean = false;
 
   constructor(private _dataService: DataService, private _router: Router) {
@@ -40,15 +39,6 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.trackInputValueChanges();
-
-    this.filteredYears = this.searchForm.controls.y.valueChanges
-      .pipe(
-        startWith(''),
-          map(value => this._filter(value)));
-  }
-
-  trackInputValueChanges() {
     this.searchForm.valueChanges.pipe(untilDestroyed(this))
       .subscribe((value) => {
         if (!value.s) { this.movies = [] };
@@ -58,12 +48,8 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   createYearsFilter() {
    let currentYear = new Date().getFullYear()
     for (let i = currentYear; i >= 1900; i--) {
-      this.years.push(i);
+      this.years.push({'value': i});
     }  
-  }
-  
-  private _filter(value) {
-     return this.years.filter(year => year.toString().includes(value));
   }
 
   submitParams(page?) {
@@ -76,7 +62,13 @@ export class MoviesListComponent implements OnInit, OnDestroy {
     }
     Object.keys(this.searchForm.value)
       .filter(element => this.searchForm.controls[element].value)
-        .map(elem => params[elem] = this.searchForm.controls[elem].value);
+        .map(elem => {
+          if (elem == 'type' || elem == 'y') {
+            params[elem] = this.searchForm.controls[elem].value.value;
+          } else {
+            params[elem] = this.searchForm.controls[elem].value;
+          }
+        });
     
     this.getMovies(params);
   }

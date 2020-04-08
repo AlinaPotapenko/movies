@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed, inject, fakeAsync, tick } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, inject, fakeAsync } from '@angular/core/testing';
 import { RouterTestingModule } from "@angular/router/testing";
 import { SharedMaterialModule } from '../Shared/shared-material.module';
 import { SharedModule } from '../Shared/shared.module';
@@ -8,7 +8,6 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DataService } from '../Shared/services/data.service';
 import { of } from 'rxjs/internal/observable/of';
-import { By } from '@angular/platform-browser';
 
 
 describe('MoviesListComponent', () => {
@@ -66,10 +65,10 @@ describe('MoviesListComponent', () => {
     
       let currentYear = new Date().getFullYear();
       expect(component.years.length).toEqual(currentYear - 1900 + 1);
-      expect(component.years.some(elem => typeof elem != "number")).toBeFalsy();
+      expect(component.years.some(elem => typeof elem != "object")).toBeFalsy();
   })
 
-  test('trackInputValueChanges should clean movies property when input is cleaned by user', () => {
+  test('ngOnInit should clean movies property when input is cleaned by user', () => {
     component.searchForm.controls.s.setValue('movie');
     component.movies = [{ Title: 'Cool movie', Year: '2019', imdbID: '123', Type: 'movie', Poster: 'N/A'}];
     fixture.detectChanges()
@@ -92,10 +91,11 @@ describe('MoviesListComponent', () => {
    test('submitParams function should create params object and pass it to getMovies function', () => {
       jest.spyOn(component, 'getMovies')  
       component.searchForm.controls.s.setValue('movie');
-      component.searchForm.controls.type.setValue('movie')
+      component.searchForm.controls.type.setValue({value: 'movie'});
+      component.searchForm.controls.y.setValue({value: 1998});
       component.submitParams(2);
       expect(component.getMovies).toHaveBeenCalledTimes(1);
-      expect(component.getMovies).toHaveBeenCalledWith({s: 'movie', type: 'movie', page: 2})
+      expect(component.getMovies).toHaveBeenCalledWith({s: 'movie', type: 'movie', y: 1998, page: 2})
    })
 
   test('getMovies function makes API call and get movies list according to the search query',
@@ -133,12 +133,18 @@ describe('MoviesListComponent', () => {
       jest.useFakeTimers();
       jest.spyOn(component, 'validateInput');
       let button = fixture.debugElement.nativeElement.querySelector('.search');
+      let input = fixture.debugElement.nativeElement.querySelector('.inputField');
 
+      expect(input.classList.contains('isInvalid')).toBeFalsy();
       expect(component.isInvalid).toBeFalsy();
       button.click();
+      fixture.detectChanges();
+      expect(input.classList.contains('isInvalid')).toBeTruthy();
       expect(component.isInvalid).toBeTruthy()
       jest.advanceTimersByTime(3000);
+      fixture.detectChanges();
       expect(component.isInvalid).toBeFalsy()
+      expect(input.classList.contains('isInvalid')).toBeFalsy();
    })
 
   })

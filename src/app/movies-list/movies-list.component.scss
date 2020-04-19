@@ -1,6 +1,11 @@
 $fuchsia: #ff44b8;
 $cyan: #1bffea;
+$movieTitle: #494747;
+$movieBorder: #efe8e8;
 
+button:focus, input:focus {
+    outline-width: 0px;
+}
 .searchField {
     box-sizing: border-box;
     width: 60%;
@@ -26,7 +31,7 @@ $cyan: #1bffea;
     border: 1px inset;
 }
 ::ng-deep.ui-dropdown {
-    margin-right: 90px;
+    margin-right: 97px;
 }
 .matSpinner {
     position: fixed;
@@ -36,17 +41,20 @@ $cyan: #1bffea;
 .matSpinner ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
 stroke: #636262;
 }
-mat-paginator {
-    background: #edebeb;
-    width: 55%;
-    margin-right: auto;
-    margin-left: auto; 
-    border-radius: 7px;
-    border: 2px solid #636262;
-    color: #545454;
-}
 .moviesList {
     padding: 0px;
+    width: 70%;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    flex-direction: column;
+}
+.searchedResults {
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-height: 430px;
+    margin-bottom: 20px;
 }
 .heading {
     font-family: 'Luckiest Guy', cursive;
@@ -106,38 +114,70 @@ i {
     cursor: pointer;
 }
 .poster {
-    width: 80px;
-    height: 100px;
+    width: 170px;
+    height: 240px;
 }
-.container {
+.movie-container {
     box-sizing: border-box;
-    list-style-type: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: stretch;
-    width: 55%;
-    margin-right: auto;
-    background-color: #edebeb;
-    margin-left: auto;
-    padding: 5px;
-    border-radius: 7px;
-    margin-bottom: 4px;
-    border: 2px solid #636262;
-    font-family: Constantia;
-    color: #545454;
+    list-style: none;
+    background-color: rgba(255,255,255,0.9);
+    padding: 10px 10px;
+    border-radius: 8px;
+    margin: 20px 20px;
+    border: 1px solid $movieBorder;
+    min-height: 360px;
+    &:hover {
+        background-color: rgba(255,255,255,1);
+        cursor: pointer;
+        box-shadow: 0 9px 19px 0 rgba(0, 0, 0, 0.15), 0 4px 4px 0 rgba(0, 0, 0, 0.26);
+    }
+}
+.movie-title {
     font-weight: bolder;
+    font-size: 19px;
+    margin: 5px 0;
+    min-height: 40px;
+    text-align: center;
+    color: $movieTitle;
 }
-.container:hover {
-    cursor: pointer;
+.movie-details {
+    text-align: center; 
+    font-size: 16px;
+    margin: 0px;
+    color: #616060;
 }
-.resultDetails {
-    display: block;
-    float: right;
-    text-align: right;
-    font-family: Constantia;
+::ng-deep body .ui-paginator {
+    background-color: transparent;
+    width: 40%;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 8px;
+    border: none;
 }
-span {
-    border-bottom: 3px solid white;
+::ng-deep body .ui-paginator .ui-paginator-pages .ui-paginator-page.ui-state-active {
+    background-color: $cyan;
+    border-radius: 15px;
 }
-
+::ng-deep body .ui-paginator .ui-paginator-pages .ui-paginator-page:hover, ::ng-deep body .ui-paginator .ui-paginator-first:hover, 
+  ::ng-deep body .ui-paginator .ui-paginator-prev:hover, ::ng-deep body .ui-paginator .ui-paginator-next:hover, ::ng-deep body .ui-paginator .ui-paginator-last:hover {
+    border-radius: 15px;
+}
+::ng-deep body .ui-paginator .ui-paginator-pages .ui-paginator-page:focus, ::ng-deep body .ui-paginator .ui-paginator-pages .ui-paginator-page:focus, ::ng-deep body .ui-paginator .ui-paginator-first:focus, 
+::ng-deep body .ui-paginator .ui-paginator-prev:focus, ::ng-deep body .ui-paginator .ui-paginator-next:focus, ::ng-deep body .ui-paginator .ui-paginator-last:focus {
+    box-shadow: none;
+}
+::-webkit-scrollbar {
+    width: 10px;
+    height: 12px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: $cyan;
+    box-shadow: inset 0 0 4px rgba(0,0,0,.5);
+}
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 4px rgba(0,0,0,.3);
+    border-radius: 10px;
+    border: 1px solid transparent;
+    background-clip: content-box; 
+}

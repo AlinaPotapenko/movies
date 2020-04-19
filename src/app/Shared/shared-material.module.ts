@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
@@ -21,12 +20,13 @@ import { MenuModule } from "primeng/menu";
 import { HeaderComponent } from '../movies-list/header/header.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   declarations: [ HeaderComponent ],
   imports: [
     CommonModule,
-    MatPaginatorModule,
+    PaginatorModule,
     MatFormFieldModule,
     MatSelectModule,
     MatAutocompleteModule,
@@ -44,7 +44,7 @@ import { ButtonModule } from 'primeng/button';
     ButtonModule
   ],
   exports: [
-    MatPaginatorModule,
+    PaginatorModule,
     MatFormFieldModule,
     MatSelectModule,
     MatAutocompleteModule,

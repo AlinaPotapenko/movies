@@ -33,23 +33,25 @@
       <mat-spinner *ngIf = "showSpinner" diameter = "30"></mat-spinner>
     </div>
     <ul *ngIf="movies.length" class="moviesList">
-      <li *ngFor="let movie of movies" class = "container" (click) = "navigateToDetails(movie)">
-        <div>
-          <p class = "resultDetails">
-            <span>{{movie.Title}}</span><br>
-            <span>{{movie.Type}}</span><br>
-            <span>{{movie.Year}}</span>
-          </p>
-            <img *ngIf ='movie.Poster != "N/A"; else noPoster' src="{{movie.Poster}}" class = "poster" />
-              <ng-template #noPoster>
+      <div class="searchedResults">
+        <li *ngFor="let movie of movies; index as i" class="movie-container" 
+            (click)="navigateToDetails(movie)" [id]="i">
+          <img *ngIf='movie.Poster!="N/A"; else noPoster' src="{{movie.Poster}}" class="poster"/>
+            <ng-template #noPoster>
                 <img class="poster" src='assets/images/no-image.png'/>
-              </ng-template>
-        </div>
-       </li>
-    <mat-paginator [length]=totalResults 
-                   [pageSize]=movies.length
-                   [hidePageSize]=true
-                   (page)="doPaginate($event)">
-    </mat-paginator>
+            </ng-template>
+          <p class="movie-title">{{movie.Title}}</p>
+          <div *ngIf="movie.Title.length < 50">
+            <p class="movie-details"><em>{{movie.Type}}</em></p>
+            <p class="movie-details"><em>{{movie.Year}}</em></p>
+          </div>
+          <p class="movie-details" *ngIf="movie.Title.length > 50">
+            <em>{{movie.Type}}, {{movie.Year}}</em>
+          </p>
+        </li>
+      </div>
+      <p-paginator [rows]="10" [totalRecords]="totalResults" 
+                    (onPageChange)="doPaginate($event)" pageLinkSize='4'>
+      </p-paginator>
     </ul>
 

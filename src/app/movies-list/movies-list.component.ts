@@ -98,7 +98,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   }
  
   doPaginate(e?) {
-    this.submitParams(e.pageIndex + 1);
+    this.submitParams(e.page+1);
   }
 
   navigateToDetails(movie) {

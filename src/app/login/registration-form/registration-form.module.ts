@@ -24,8 +24,6 @@ const ROUTES: Routes = [
     ReactiveFormsModule,
     SharedMaterialModule
   ],
-  exports: [
-    SharedMaterialModule
-  ]
+  exports: []
 })
 export class RegistrationFormModule { }

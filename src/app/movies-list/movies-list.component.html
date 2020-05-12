@@ -1,9 +1,10 @@
+<div [@.disabled]="nothingFound">
 <h1 class = "heading">MovieLand</h1>
-    <form [formGroup] = "searchForm" (submit)="submitParams()" 
+    <form [formGroup]="searchForm" (submit)="submitParams()" 
     class = "searchField" autocomplete="off">
         <label>
            <input formControlName="s" class="inputField" #searchQuery
-               [class.isInvalid]="isInvalid" required>
+               [class.isInvalid]="isInvalid" [class.withoutCursor]="nothingFound" required>
             <i class="fa fa-search" [class.notEmpty]="searchQuery.value.length"></i>
         </label>
         <button class="button search" type="submit" 
@@ -13,7 +14,8 @@
         <button class="button advanced" (click)="toggleAdvancedPanel()">
           Advanced
         </button>
-        <div *ngIf="showAdvancedPanel" class="advance-block">
+        <div *ngIf="showAdvancedPanel && types && years" class="advance-block"
+              @dropdownTrigger>
             <p-dropdown [options]="types" formControlName="type" 
                       placeholder="Select a type" optionLabel="viewValue" 
                       showTransitionOptions="225ms ease-out" [showClear]="true"
@@ -32,7 +34,14 @@
     <div class = "matSpinner">
       <mat-spinner *ngIf = "showSpinner" diameter = "30"></mat-spinner>
     </div>
-    <ul *ngIf="movies.length" class="moviesList">
+    <div class="nothingFound" *ngIf="nothingFound">
+      <div class="modal-content">
+        <i class="pi pi-times" (click)="closeModal()"></i>
+        <p>Nothing has been found. Please try something else.</p>
+      </div>
+    </div>
+    <ul *ngIf="movies.length" class="moviesList" @moviesListTrigger>
+      <a routerLink='./' [fragment]="10">test</a>
       <div class="searchedResults">
         <li *ngFor="let movie of movies; index as i" class="movie-container" 
             (click)="navigateToDetails(movie)" [id]="i">
@@ -54,4 +63,4 @@
                     (onPageChange)="doPaginate($event)" pageLinkSize='4'>
       </p-paginator>
     </ul>
-
+</div>

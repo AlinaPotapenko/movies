@@ -5,8 +5,9 @@
 <div *ngIf = 'showSpinner == false'>
 <h1 class = "heading">{{movie.Title}}</h1>
 
-  <a routerLink="/movies" routerLinkActive="active" class = "button">
-  	 <i class="fa fa-home"></i>   Back to homepage
+  <a routerLink="/movies" routerLinkActive="active" class="back-to-home-button">
+	Back to homepage 
+	  <i class='icon back-to-home'></i>   
   </a>
 
   <div class = "someFeatures">
@@ -18,20 +19,23 @@
        </p-rating>
      </p>
   </div>
-
-  <div class = "container">
-	 <img *ngIf ='movie.Poster != "N/A"; else noPoster'src="{{movie.Poster}}"> 
-	   <ng-template #noPoster>
-         <img class="noImg" src='../../assets/images/no-image.png'/>
-       </ng-template>
-	  
-	   <section class = "items">
+  <div class="movie-description">
+	  <div class="poster-wrapper">
+	 	<img *ngIf='movie.Poster!="N/A"; else noPoster' src="{{movie.Poster}}" class="poster"> 
+	   	<ng-template #noPoster>
+           <img class="poster" src='../../assets/images/no-image.png'/>
+		   </ng-template>
+	  </div>
+	<section class="description-details">
 		  <p *ngIf ='movie.Year != "N/A" && movie.Year' class ="item">
 	         <span>Year: </span>{{movie.Year}}
 	      </p>
 	      <p *ngIf ='movie.Type != "N/A" && movie.Type' class ="item">
 	         <span>Type: </span> {{movie.Type}}
-	      </p>
+		  </p>
+		  <p *ngIf='movie.totalSeasons!="N/A"&&movie.totalSeasons' class="item">
+			<span>Total Seasons: </span> {{movie.totalSeasons}}
+		 </p>
 		  <p *ngIf ='movie.Runtime != "N/A" && movie.Runtime' class ="item">
 		     <span>Runtime: </span> {{movie.Runtime}}
 		  </p>
@@ -56,11 +60,13 @@
 		  <p *ngIf ='movie.Awards != "N/A" && movie.Awards'class ="item">
 		     <span>Awards: </span> {{movie.Awards}}
 		  </p>
-		  <p *ngIf ='movie.Plot != "N/A" && movie.Plot' class ="item">{{movie.Plot | limitationPipe}}</p>
+		  <p *ngIf ='movie.Plot != "N/A" && movie.Plot' class ="item">{{movie.Plot}}</p>
 		  <p *ngIf ='movie.imdbRating != "N/A" && movie.imdbRating' class ="item">
 		     <span>ImdbRating: </span> {{movie.imdbRating}} 
-		        <img width= "15px" height = "15px" src="http://s1.iconbird.com/ico/2013/12/505/w450h4001385925286Star.png">
-		  </p>		
+				<img width="15px" height="15px" 
+					src="http://s1.iconbird.com/ico/2013/12/505/w450h4001385925286Star.png">
+				<span class="votes-quantity"> (total votes: {{movie.imdbVotes}})</span>
+			</p>		
 	   </section>
  </div>
  <div class = "comment">

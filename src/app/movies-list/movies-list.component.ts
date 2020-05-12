@@ -1,17 +1,18 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map, startWith, finalize } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
 
 import { IMoviesList, IMovieType } from '../Shared/models';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { DataService } from '../Shared/services/data.service';
+import { MoviesListTrigger, DropdownTrigger } from '../Shared/animations';
 
 @Component({
   selector: 'app-movies-list',
   templateUrl: './movies-list.component.html',
-  styleUrls: ['./movies-list.component.scss']
+  styleUrls: ['./movies-list.component.scss'],
+  animations: [ MoviesListTrigger, DropdownTrigger ]
 })
 
 export class MoviesListComponent implements OnInit, OnDestroy {
@@ -27,6 +28,7 @@ export class MoviesListComponent implements OnInit, OnDestroy {
   ];
   years: Array<object> = [];
   isInvalid: boolean = false;
+  nothingFound: boolean = false;
 
   constructor(private _dataService: DataService, private _router: Router) {
     this.searchForm = new FormGroup({
@@ -80,7 +82,11 @@ export class MoviesListComponent implements OnInit, OnDestroy {
        if (data.Search) {
           this.movies = data.Search;
           this.totalResults = data.totalResults;
-       }
+       } else if (data.Error == "Movie not found!") {
+         this.movies = [];
+         this.nothingFound = true;
+         this.searchForm.controls.s.setValue('', { emitEvent: false });
+      }
     });
   }
 
@@ -103,6 +109,10 @@ export class MoviesListComponent implements OnInit, OnDestroy {
 
   navigateToDetails(movie) {
     this._router.navigate([`movies/details/${movie.imdbID}`]).then();
+  }
+
+  closeModal() {
+    this.nothingFound = false;
   }
 
   ngOnDestroy() {}

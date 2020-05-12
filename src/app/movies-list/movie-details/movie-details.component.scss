@@ -1,14 +1,30 @@
+$orange: orange;
+$lightgrey: #ebe8e8;
+$grey: #616060; 
+
 .heading {
-	text-align: center;
-    font-family: Constantia;
+    font-family: 'Luckiest Guy', cursive;
+    letter-spacing: 3px;
+    text-align: center;
     color: white;
-    margin-top: 82px;
+    margin: 70px 0 30px; 
     font-size: 3em;
-    margin-bottom: 23px;
-    text-shadow: #545454 0 0 12px;
+    text-shadow:-3px 0px 5px $orange, -4px 0px 2px $orange, 
+                 0px 0px 10px $orange, 2px 0px 3px $orange, 
+                 0px -1px 5px $orange, 0px -2px 0px $orange, 
+                 0px 1px 5px $orange, 0px 2px 3px $orange;
+    -webkit-background-clip: text;
+     -moz-background-clip: text;
+          background-clip: text;
 }
 i {
-   color: #e4018d; 
+   &.back-to-home {
+       background: url(../../../assets/images/Icons/undo.svg) no-repeat;
+       width: 25px;
+       height: 20px;
+       margin-left: 8px;
+       filter: invert(37%) sepia(16%) saturate(9%) hue-rotate(348deg) brightness(94%) contrast(88%);
+   }
 }
 .comment {
     box-sizing: border-box;
@@ -70,16 +86,6 @@ i {
 p-rating {
     cursor: pointer;
 }
-span {
-	font-weight: bold;
-}
-.noImg {
-	height: 480px;
-	width: 330px;
-}
-.items p {
-	border-bottom: 1px solid white;
-}
 .matSpinner {
     position: fixed;
     top: 50%;
@@ -88,40 +94,64 @@ span {
 .matSpinner ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
 stroke: #636262
 }
-.button {
-    display: block;
-    background: #edebeb;
-    color: #545454;
-    border: 2px solid #636262;
-    border-radius: 3px;
-    height: 23px;
-    text-decoration: none;
+.back-to-home-button {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(255, 255, 255, 0.9);
+    color: $grey;
+    border-radius: 20px;
+    padding: 10px 0;
     text-align: center;
     width: 30%;
-    margin-bottom: 15px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto 15px auto;
+    box-shadow: 0 9px 19px 0 rgba(0, 0, 0, 0.15), 0 4px 4px 0 rgba(0, 0, 0, 0.26);
+    &:hover {
+        background-color: rgba(255, 255, 255, 1);
+        font-weight: bolder;
+    }
+    &:hover i.icon.back-to-home {
+        filter: invert(66%) sepia(20%) saturate(6891%) hue-rotate(3deg) brightness(109%) contrast(102%);
+    }
 }
-.container {
+.movie-description {
 	display: flex;
-	flex-direction: row;
-	margin-left: auto;
-	margin-right: auto;
-	width: 80%;
-    background-color: #edebeb;
-    padding: 7px;
-    border: 3px solid #636262;
-    border-radius: 7px;
-    font-family: Constantia;
-    color: #545454;
+	margin: 0 auto;
+    width: 75%;
+    .poster-wrapper {
+        margin: auto 0;
+        padding: 10px 0 10px 10px;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 7px 0px 0px 7px;
+        box-shadow: 0 9px 19px 0 rgba(0, 0, 0, 0.15), 0 4px 4px 0 rgba(0, 0, 0, 0.26);
+        &:after {
+            content: ' ';
+            background-color: white;
+        }
+    }
+    .poster {
+        border-radius: 5px;
+        max-height: 450px;
+	    max-width: 330px;
+    }
 }
-img {
-	margin-right: 20px;
-}
-.items {
+.description-details {
 	justify-content: flex-start;
-	flex-direction: column;
-	font-family: Constantia;
+    flex-direction: column;
+    padding: 15px;
+    color: $grey;
+    border-radius: 7px;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 9px 19px 0 rgba(0, 0, 0, 0.15), 0 4px 4px 0 rgba(0, 0, 0, 0.26);
+    p {
+        border-bottom: 1px solid $lightgrey;
+    }
+    span {
+        font-weight: bold;
+    }
+    span.votes-quantity {
+        font-weight: normal;
+        font-size: 13px;
+    }
 }
 
 

@@ -1,10 +1,10 @@
 $fuchsia: #ff44b8;
 $cyan: #1bffea;
 $movieTitle: #494747;
-$movieBorder: #efe8e8;
+$lightGrey: #efe8e8;
 
 button:focus, input:focus {
-    outline-width: 0px;
+    outline: none;
 }
 .searchField {
     box-sizing: border-box;
@@ -15,23 +15,23 @@ button:focus, input:focus {
     margin-left: auto; 
 }
 .advance-block {
-    margin: 10px 75px 10px 80px;
-    text-align: left;
     display: flex;
-    justify-content: flex-start;
+    background: white;
+    padding: 10px;
+    box-sizing: border-box;
+    justify-content: space-between;
+    margin-left: 88px;
+    width: 54%;
+    border-radius: 0px 0px 15px 15px;
+    border-top: 3px solid $fuchsia;
 }
-.advance-type {
-    margin-right: 70px;
-    width: 170px;
-    height: 35px;
-    border-radius: 10px;
-    padding: 3px 7px;
+::ng-deep body .ui-dropdown, ::ng-deep body .ui-dropdown-panel, ::ng-deep body .ui-dropdown:not(.ui-state-disabled).ui-state-focus,
+::ng-deep body .ui-dropdown:not(.ui-state-disabled):hover {
+    border: none;
+    box-shadow: none;
+}
+::ng-deep body .ui-inputtext, ::ng-deep body .ui-dropdown-panel .ui-dropdown-items .ui-dropdown-item {
     color: grey;
-    font-weight: bolder;
-    border: 1px inset;
-}
-::ng-deep.ui-dropdown {
-    margin-right: 97px;
 }
 .matSpinner {
     position: fixed;
@@ -61,7 +61,7 @@ stroke: #636262;
     letter-spacing: 3px;
     text-align: center;
     color: white;
-    margin: 85px 0 30px; 
+    margin: 70px 0 30px; 
     font-size: 4em;
     text-shadow:-3px 0px 5px $fuchsia, -4px 0px 2px $fuchsia, 
                  0px 0px 10px $fuchsia, 2px 0px 3px $fuchsia, 
@@ -73,7 +73,7 @@ stroke: #636262;
 }
 .inputField {
     width: 57%;
-    color: grey; //#a19b9a;
+    color: grey; 
     border-radius: 15px;
     height: 40px;
     padding: 3px 25px 0 40px;
@@ -81,15 +81,20 @@ stroke: #636262;
     &.isInvalid {
         border: 2px solid red;
     }
+    &.withoutCursor {
+        color: transparent;
+    }
 }
 label {
     position: relative;
 }
 i {
     position: absolute;
+    color: grey;
+}
+::ng-deep .fa.fa-search {
     left: 16px;
     top: 2px;
-    color: grey;
     &.notEmpty {
         color: $fuchsia;
     }
@@ -124,7 +129,7 @@ i {
     padding: 10px 10px;
     border-radius: 8px;
     margin: 20px 20px;
-    border: 1px solid $movieBorder;
+    border: 1px solid $lightGrey;
     min-height: 360px;
     &:hover {
         background-color: rgba(255,255,255,1);
@@ -145,6 +150,38 @@ i {
     font-size: 16px;
     margin: 0px;
     color: #616060;
+}
+.nothingFound {
+   position: fixed; /* Stay in place */
+   z-index: 1; /* Sit on top */
+   left: 0;
+   top: 0;
+   width: 100%; /* Full width */
+   height: 100%; /* Full height */
+   background-color: rgb(0,0,0); /* Fallback color */
+   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.modal-content {
+    background-color: #fefefe;
+    position: relative;
+    margin: 20% auto; 
+    padding: 20px;
+    border-radius: 12px;
+    width: 35%; 
+    box-shadow: 0 9px 19px 0 rgba(0, 0, 0, 0.15), 0 4px 4px 0 rgba(0, 0, 0, 0.26);
+    & p {
+        margin: 18px 0 15px 0;
+        color: grey;
+        letter-spacing: 0.3px;
+    }
+}
+::ng-deep body .pi {
+    &.pi-times {
+        right: 16px;
+        top: 15px;
+        font-size: 1.5em;
+        cursor: pointer;
+    }
 }
 ::ng-deep body .ui-paginator {
     background-color: transparent;

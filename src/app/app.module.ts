@@ -43,7 +43,7 @@ const APP_ROUTING: Routes = [
 ];
 
 
-const rootRouting: ModuleWithProviders = RouterModule.forRoot(APP_ROUTING);
+const rootRouting: ModuleWithProviders = RouterModule.forRoot(APP_ROUTING, {anchorScrolling: 'enabled'});
 
 
 @NgModule({
